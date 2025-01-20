@@ -27,7 +27,7 @@ export default defineConfig({
       tokens: {
         colors: {
           background: {
-            value: '#0A0A0B',
+            value: '#000000',
           },
           tile: {
             0: { value: '#121212' },

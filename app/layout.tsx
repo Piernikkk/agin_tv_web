@@ -1,6 +1,7 @@
 import { Poppins } from 'next/font/google';
 import "./globals.css";
 import { ReactNode } from 'react';
+import TabBar from '@/lib/TabBar';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -20,7 +21,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
-        {children}
+        <TabBar>
+          {children}
+        </TabBar>
       </body>
     </html>
   );
