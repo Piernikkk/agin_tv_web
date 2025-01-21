@@ -40,7 +40,7 @@ export default defineConfig({
             3: { value: '#7A7A7A' },
           },
           border: {
-            value: '#ffffff10',
+            value: '#ffffff20',
           },
           gray: {
             0: { value: '#f5f5f5' },
