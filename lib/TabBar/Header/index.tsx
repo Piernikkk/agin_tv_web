@@ -1,12 +1,18 @@
-import Text from "@/lib/components/Text";
 import { tabBarHeader } from "./styles";
 import { IconDeviceTvOld } from "@tabler/icons-react";
+import { tabOptionLabel } from "../TabOption/styles";
 
-export default function TabBarHeader() {
+export type TabBarHeaderProps = {
+    expanded?: boolean;
+}
+
+export default function TabBarHeader({ expanded }: TabBarHeaderProps) {
     return (
         <div className={tabBarHeader}>
-            <IconDeviceTvOld color="#8950c5" size={40} />
-            <Text size="xl" color={'agin'}>Agin TV</Text>
+            <div>
+                <IconDeviceTvOld color="#7b2eda" size={47} />
+            </div>
+            <div className={tabOptionLabel({ expanded, header: true })}>Agin TV</div>
         </div>
     )
 }

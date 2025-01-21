@@ -42,6 +42,18 @@ export default defineConfig({
           border: {
             value: '#ffffff20',
           },
+          violet: {
+            0: { value: '#f7ecff' },
+            1: { value: '#e7d6fb' },
+            2: { value: '#caaaf1' },
+            3: { value: '#ac7ce8' },
+            4: { value: '#9354e0' },
+            5: { value: '#833bdb' },
+            6: { value: '#7b2eda' },
+            7: { value: '#6921c2' },
+            8: { value: '#5d1cae' },
+            9: { value: '#501599' },
+          },
           gray: {
             0: { value: '#f5f5f5' },
             1: { value: '#e7e7e7' },
@@ -91,6 +103,18 @@ export default defineConfig({
             9: { value: '#a90003' },
           },
           dimmed: {
+            violet: {
+              0: { value: '#f7ecff20' },
+              1: { value: '#e7d6fb20' },
+              2: { value: '#caaaf120' },
+              3: { value: '#ac7ce820' },
+              4: { value: '#9354e020' },
+              5: { value: '#833bdb20' },
+              6: { value: '#7b2eda20' },
+              7: { value: '#6921c220' },
+              8: { value: '#5d1cae20' },
+              9: { value: '#50159920' },
+            },
             blue: {
               0: { value: '#e5f4ff20' },
               1: { value: '#cde2ff20' },

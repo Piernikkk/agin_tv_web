@@ -1,20 +1,37 @@
-import { css } from "@/styled-system/css";
+import { css, cva } from "@/styled-system/css";
 
 export const windowContainer = css({
     display: 'flex',
     height: '100%',
-    zIndex: 1,
+    // position: 'relative',
     maxWidth: '100vw',
+    marginLeft: '77px',
 })
 
-export const tabBarContainer = css({
-    borderRightWidth: '1px',
-    borderRightColor: 'border',
-    width: '250px',
-    minW: '250px',
-    height: '100%',
-    padding: '25px',
-    display: 'flex',
-    flexDir: 'column',
-    gap: '20px',
+export const tabBarContainer = cva({
+    base: {
+        borderRightWidth: '1px',
+        backgroundColor: 'background',
+        borderRightColor: 'border',
+        overflow: 'hidden',
+        width: '77px',
+        height: '100%',
+        padding: '15px',
+        display: 'flex',
+        flexDir: 'column',
+        gap: '15px',
+        transition: 'width 0.2s ease-in-out',
+        position: 'absolute',
+        zIndex: 50,
+        left: 0,
+        top: 0,
+        bottom: 0,
+    },
+    variants: {
+        opened: {
+            true: {
+                width: '250px',
+            }
+        }
+    }
 })

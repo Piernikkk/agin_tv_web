@@ -2,7 +2,8 @@ import { css } from "@/styled-system/css";
 
 export const tabBarHeader = css({
     display: 'flex',
-    justifyContent: 'center',
+    paddingRight: '10px',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     gap: '15px',
 })
