@@ -42,13 +42,10 @@ export default function TabBar({ children }: TabBarProps) {
                     {options.map((option, index) => (
                         <TabOption key={index} {...option} active={pathname == option.href || pathname.split('/')[3]?.startsWith(option?.href.split('/')[1]) || pathname.split('/')[3] == option?.href.split('/')[1]} expanded={opened} />
                     ))}
-                    {/* <TabOption href="/" label="Home" icon={IconHome} expanded={opened} />
-                    <TabOption href="/library" label="Library" icon={IconLayoutGrid} expanded={opened} />
-                    <TabOption href="/" label="History" icon={IconHistory} expanded={opened} /> */}
                 </div>
             </div>
             {/* <div className={css({ width: '70px', height: '100vh' })} /> */}
-            <div className={css({ zIndex: 0 })}>
+            <div className={css({ zIndex: 0, width: '100%' })}>
                 {children}
             </div>
         </div>

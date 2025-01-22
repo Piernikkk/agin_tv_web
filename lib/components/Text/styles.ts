@@ -2,7 +2,7 @@ import { cva } from "@/styled-system/css";
 
 export const text = cva({
     base: {
-        fontWeight: 600,
+        fontWeight: 500,
         color: 'text.0',
         fontSize: 18,
     },
@@ -14,6 +14,7 @@ export const text = cva({
             md: { fontSize: 18 },
             lg: { fontSize: 24 },
             xl: { fontSize: 30 },
+            xxl: { fontSize: 50 },
         },
         weight: {
             100: { fontWeight: 100 },
