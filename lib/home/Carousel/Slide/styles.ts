@@ -15,14 +15,23 @@ export const SlideBackgroundFiller = css({
     background: 'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0,0,0,0) 100%)'
 });
 
-export const SlideImage = css({
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    zIndex: 0,
-    display: 'block',
-    transition: '200ms opacity ease-in-out',
-    transitionDelay: '200ms',
+export const SlideImage = cva({
+    base: {
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        zIndex: 0,
+        display: 'block',
+        opacity: 1,
+        transition: 'all 200ms ease-in-out',
+    },
+    variants: {
+        animate: {
+            true: {
+                opacity: 0,
+            }
+        }
+    }
 });
 
 export const logoImage = css({
@@ -51,11 +60,18 @@ export const SlideDescription = cva({
         justifyContent: 'flex-end',
         zIndex: 2,
         gap: '10px',
+        transition: 'all 200ms ease-in-out',
     },
     variants: {
         padding: {
             true: {
                 gap: '20px'
+            }
+        },
+        animate: {
+            true: {
+                transform: 'translateY(10%)',
+                opacity: 0,
             }
         }
     }

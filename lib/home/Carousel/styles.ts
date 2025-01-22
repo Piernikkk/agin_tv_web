@@ -1,7 +1,7 @@
 import { css } from "@/styled-system/css";
 
 export const CarouselContainer = css({
-    aspectRatio: '16/ 7',
+    aspectRatio: '16/ 6.5',
     height: 'auto',
     width: '100%',
     margin: '0 auto',

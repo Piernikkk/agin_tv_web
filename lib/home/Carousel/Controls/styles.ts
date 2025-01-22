@@ -7,7 +7,7 @@ export const CarouselControlsContainer = css({
     flexDirection: 'column',
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    zIndex: 2,
+    zIndex: 0,
     gap: '10px',
 })
 
