@@ -1,14 +1,15 @@
 import { Icon } from "@tabler/icons-react";
+import React, { HTMLAttributes } from "react";
 
-export type ButtonProps = {
+export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
     icon: Icon
-    size: number,
+    size?: number,
     color?: string,
 }
 
-export default function Button({ icon: Icon, size = 30, color = '#fff' }: ButtonProps) {
+export default function Button({ icon: Icon, size = 30, color = '#fff', onClick, className }: ButtonProps) {
     return (
-        <div>
+        <div onClick={onClick} className={className}>
             <Icon size={size} color={color} />
         </div>
     );

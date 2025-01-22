@@ -1,6 +1,6 @@
 import Text from "@/lib/components/Text"
 import { TSlide } from ".."
-import { SlideBackgroundFiller, SlideContainer, SlideDescription, SlideImage } from "./styles"
+import { logoImage, SlideBackgroundFiller, SlideContainer, SlideDescription, SlideImage } from "./styles"
 
 
 export type SlideProps = {
@@ -14,8 +14,9 @@ export default function Slide({ slides, activeSlide }: SlideProps) {
         <div className={SlideContainer}>
             <img src={slides[activeSlide].background_url} alt={slides[activeSlide].name} className={SlideImage} />
             <div className={SlideBackgroundFiller} />
-            <div className={SlideDescription}>
-                <Text weight={600} size="xxl">{slides[activeSlide].name}</Text>
+            <div className={SlideDescription({ padding: !!slides[activeSlide].logo_url })}>
+                {!slides[activeSlide].logo_url && <Text weight={600} size="xxl">{slides[activeSlide].name}</Text>}
+                {slides[activeSlide].logo_url && <img src={slides[activeSlide].logo_url} className={logoImage} />}
                 <Text size="md">{slides[activeSlide].description}</Text>
             </div>
         </div>

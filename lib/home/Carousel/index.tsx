@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import Slide from "./Slide";
 import { CarouselContainer } from "./styles";
+import { IconChevronLeft } from "@tabler/icons-react";
+import CarouselButton from "./CarouselButton";
 
 export type TSlide = {
     background_url: string,
