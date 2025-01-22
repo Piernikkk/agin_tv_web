@@ -21,6 +21,8 @@ export const SlideImage = css({
     objectFit: 'cover',
     zIndex: 0,
     display: 'block',
+    transition: '200ms opacity ease-in-out',
+    transitionDelay: '200ms',
 });
 
 export const logoImage = css({
@@ -30,17 +32,23 @@ export const logoImage = css({
     zIndex: 1,
 })
 
+export const SlideElementsContainer = css({
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    display: 'flex',
+    justifyContent: 'space-between',
+})
+
 export const SlideDescription = cva({
     base: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
         maxWidth: '50%',
         padding: '8% 3%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         zIndex: 2,
         gap: '10px',
     },
