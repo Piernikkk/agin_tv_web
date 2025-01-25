@@ -45,7 +45,7 @@ export default function TabBar({ children }: TabBarProps) {
                 </div>
             </div>
             {/* <div className={css({ width: '70px', height: '100vh' })} /> */}
-            <div className={css({ zIndex: 0, width: '100%' })}>
+            <div className={css({ zIndex: 0, width: '100%', height: '100vh', overflowY: 'scroll', scrollbarColor: '#000000' })}>
                 {children}
             </div>
         </div>

@@ -1,5 +1,7 @@
 import Carousel, { TSlide } from "@/lib/home/Carousel";
+import ContinueWatching from "@/lib/home/ContinueWatching";
 import { css } from "@/styled-system/css";
+import { sections } from "./styles";
 
 export default function Home() {
   const slides: TSlide[] = [
@@ -25,8 +27,12 @@ export default function Home() {
 
 
   return (
-    <div className={css({ width: '100%', height: '100%', padding: '0px' })}>
+    <div className={css({ width: '100%', padding: '0px', gap: "20px", display: 'flex', flexDirection: 'column', overflow: 'hidden' })}>
       <Carousel slides={slides} />
+      <div className={sections}>
+        <ContinueWatching />
+
+      </div>
     </div>
   );
 }

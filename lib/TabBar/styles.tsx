@@ -6,6 +6,7 @@ export const windowContainer = css({
     // position: 'relative',
     maxWidth: '100vw',
     marginLeft: '77px',
+    overflow: 'hidden',
 })
 
 export const tabBarContainer = cva({
