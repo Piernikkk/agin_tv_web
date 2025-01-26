@@ -20,6 +20,7 @@ export default function MovieTile({ background_url, name, position, duration }: 
     const movieTileRef = useRef<HTMLDivElement>(null);
     const contentRef = useContext(ContentRefContext);
     const [hovered, setHovered] = useState(false);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const [highlightPosition, setHighlightPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
 
@@ -57,18 +58,36 @@ export default function MovieTile({ background_url, name, position, duration }: 
 
     useEffect(() => {
         const movieTile = movieTileRef.current;
-        const setTrue = () => setHovered(true);
+        const setTrue = () => {
+            timeoutRef.current = setTimeout(() => setHovered(true), 1000);
+            return () => {
+                if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current);
+                }
+            }
+
+        };
+
+        const setFalse = () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        }
 
         if (movieTile) {
             movieTile.addEventListener('mouseenter', setTrue)
-
+            movieTile.addEventListener('mouseleave', setFalse);
         }
 
         return () => {
-            if (movieTile)
+            if (movieTile) {
                 movieTile.removeEventListener('mouseenter', setTrue);
+                movieTile.removeEventListener('mouseleave', setFalse);
+            }
         }
     }, [movieTileRef])
+
+
 
 
     return (

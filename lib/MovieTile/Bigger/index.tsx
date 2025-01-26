@@ -2,7 +2,7 @@
 import { css } from "@/styled-system/css";
 import { TMovieTile } from "..";
 import { MovieTileBiggerContainer } from "./styles";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useLayoutEffect } from "react";
 
 export interface MovieTileBiggerProps extends TMovieTile {
     description?: string,
@@ -17,21 +17,14 @@ export default function MovieTileBigger({ background_url, name, position, durati
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
-        if (containerRef.current) {
-            const size = containerRef.current.getBoundingClientRect();
-            console.log(size);
-
-            setContainerSize(size);
-        }
-
-        const timeout = setTimeout(() => { setVisible(true) }, 1000);
+        const timeout = setTimeout(() => { setVisible(true) }, 0);
 
         return () => {
             clearTimeout(timeout);
         }
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const element = containerRef.current;
         if (!element) return;
 

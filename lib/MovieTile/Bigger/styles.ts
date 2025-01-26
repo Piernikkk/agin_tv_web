@@ -10,12 +10,13 @@ export const MovieTileBiggerContainer = cva({
         overflow: 'hidden',
         position: 'fixed',
         opacity: 1,
-        transition: 'height 0.3s ease-in-out',
+        transition: 'transform 0.3s ease-in-out',
+        transformOrigin: 'center',
     },
     variants: {
         visible: {
             true: {
-                height: '260px'
+                transform: 'scale(1.3)',
             }
         }
     }
