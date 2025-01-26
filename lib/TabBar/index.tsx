@@ -4,7 +4,7 @@ import TabBarHeader from "./Header";
 import { tabBarContainer, windowContainer } from "./styles";
 import TabOption from "./TabOption";
 import { css } from "@/styled-system/css";
-import { useState } from "react";
+import { createContext, RefObject, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export type TabBarProps = {
@@ -29,8 +29,11 @@ const options = [
     }
 ]
 
+export const ContentRefContext = createContext<RefObject<HTMLDivElement | null> | null>(null);
+
 export default function TabBar({ children }: TabBarProps) {
     const [opened, setOpened] = useState(false);
+    const contentRef = useRef<HTMLDivElement>(null);
 
     const pathname = usePathname();
 
@@ -44,9 +47,10 @@ export default function TabBar({ children }: TabBarProps) {
                     ))}
                 </div>
             </div>
-            {/* <div className={css({ width: '70px', height: '100vh' })} /> */}
-            <div className={css({ zIndex: 0, width: '100%', height: '100vh', overflowY: 'scroll', scrollbarColor: '#000000' })}>
-                {children}
+            <div ref={contentRef} className={css({ flex: 1, overflowY: 'auto', zIndex: 0, scrollbarColor: 'auto' })}>
+                <ContentRefContext.Provider value={contentRef}>
+                    {children}
+                </ContentRefContext.Provider>
             </div>
         </div>
     )

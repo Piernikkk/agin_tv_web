@@ -1,7 +1,8 @@
 import Carousel, { TSlide } from "@/lib/home/Carousel";
-import ContinueWatching from "@/lib/home/ContinueWatching";
 import { css } from "@/styled-system/css";
 import { sections } from "./styles";
+import { TMovieTile } from "@/lib/MovieTile";
+import Section from "@/lib/home/Section";
 
 export default function Home() {
   const slides: TSlide[] = [
@@ -25,12 +26,77 @@ export default function Home() {
     }
   ]
 
+  const tiles: TMovieTile[] = [
+    {
+      background_url: '/horizontal_bocchi.jpg',
+      name: 'Bocchi the rock',
+      position: 100,
+      duration: 1440,
+    },
+    {
+      background_url: '/horizontal_bocchi.jpg',
+      name: 'Bocchi the rock',
+      position: 100,
+      duration: 1440,
+    },
+    {
+      background_url: '/horizontal_bocchi.jpg',
+      name: 'Bocchi the rock',
+      position: 100,
+      duration: 1440,
+    },
+    {
+      background_url: '/horizontal_bocchi.jpg',
+      name: 'Bocchi the rock',
+      position: 100,
+      duration: 1440,
+    },
+    {
+      background_url: '/horizontal_bocchi.jpg',
+      name: 'Bocchi the rock',
+      position: 100,
+      duration: 1440,
+    },
+    {
+      background_url: '/horizontal_bocchi.jpg',
+      name: 'Bocchi the rock',
+      position: 100,
+      duration: 1440,
+    },
+    {
+      background_url: '/horizontal_bocchi.jpg',
+      name: 'Bocchi the rock',
+      position: 100,
+      duration: 1440,
+    },
+    {
+      background_url: '/horizontal_bocchi.jpg',
+      name: 'Bocchi the rock',
+      position: 100,
+      duration: 1440,
+    },
+    {
+      background_url: '/horizontal_bocchi.jpg',
+      name: 'Bocchi the rock',
+      position: 100,
+      duration: 1440,
+    },
+    {
+      background_url: '/horizontal_bocchi.jpg',
+      name: 'Bocchi the rock',
+      position: 100,
+      duration: 1440,
+    },
+  ]
+
+
+
 
   return (
-    <div className={css({ width: '100%', padding: '0px', gap: "20px", display: 'flex', flexDirection: 'column', overflow: 'hidden' })}>
+    <div className={css({ width: '100%', padding: '0px', gap: "20px", display: 'flex', flexDirection: 'column', paddingBottom: '100px' })}>
       <Carousel slides={slides} />
       <div className={sections}>
-        <ContinueWatching />
+        <Section name={"Continue Watching"} tiles={tiles} />
 
       </div>
     </div>
