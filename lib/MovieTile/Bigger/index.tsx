@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { css } from "@/styled-system/css";
 import { TMovieTile } from "..";
-import { MovieTileBiggerContainer } from "./styles";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
+import MovieTileBaseComponent from "../MovieTileBaseComponent";
+import Text from "@/lib/components/Text";
+import { MovieTileDetails } from "./styles";
 
 export interface MovieTileBiggerProps extends TMovieTile {
     description?: string,
@@ -69,27 +70,25 @@ export default function MovieTileBigger({ background_url, name, position, durati
 
 
     return (
-        <div ref={containerRef} className={MovieTileBiggerContainer({ visible })} style={{ left: parentPosition?.x - ((containerSize.width - parentPosition?.width) / 2), top: parentPosition?.y - ((containerSize.height - parentPosition?.height) / 2) }}>
-            <img src={background_url} alt={name} className={css({ aspectRatio: 16 / 9, height: '100%' })} />
-            {(position && duration) && <div style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: '29px',
-                background: 'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(73, 71, 71, 0) 100%)',
-                zIndex: 1,
-            }}>
-                <div style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    backgroundColor: '#FFFFFF',
-                    height: '7px',
-                    width: `${(position / duration) * 100 <= 100 ? (position / duration) * 100 : 100}%`,
-                    transition: 'width 0.5s ease',
-                }} />
-            </div>}
-        </div >
+        <MovieTileBaseComponent
+            ref={containerRef}
+            background_url={background_url}
+            name={name}
+            position={position}
+            duration={duration}
+            hovered={visible}
+            bigger
+            style={{ left: parentPosition?.x - ((containerSize.width - parentPosition?.width) / 2), top: parentPosition?.y - ((containerSize.height - parentPosition?.height) / 2) }}
+        >
+            <div className={MovieTileDetails({ visible })}>
+                <Text weight={600}>{name}</Text>
+                <Text>{name}</Text>
+                <Text>{name}</Text>
+                <Text>{name}</Text>
+                <Text>{name}</Text>
+                <Text>{name}</Text>
+            </div>
+        </MovieTileBaseComponent>
     )
 
 }

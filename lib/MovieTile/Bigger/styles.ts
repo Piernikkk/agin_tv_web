@@ -1,22 +1,24 @@
 import { cva } from "@/styled-system/css";
 
-export const MovieTileBiggerContainer = cva({
+export const MovieTileDetails = cva({
     base: {
-        height: '200px',
-        width: 'fit-content',
-        minWidth: 'fit-content',
-        aspectRatio: 16 / 9,
-        borderRadius: '10px',
-        overflow: 'hidden',
-        position: 'fixed',
-        opacity: 1,
-        transition: 'transform 0.3s ease-in-out',
-        transformOrigin: 'center',
+        height: 'fit-content',
+        width: '100%',
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        zIndex: 1,
+        opacity: 0,
+        paddingInline: '10px',
+        display: 'flex',
+        flexDirection: 'column',
+        // alignItems: 'center',
+        justifyContent: 'center',
+        color: '#fff',
+        transition: 'opacity 0.3s ease',
     },
     variants: {
         visible: {
             true: {
-                transform: 'scale(1.3)',
+                opacity: 1,
             }
         }
     }
