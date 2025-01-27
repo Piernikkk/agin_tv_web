@@ -18,6 +18,7 @@ export const text = cva({
             xs: { fontSize: 14 },
             sm: { fontSize: 16 },
             md: { fontSize: 18 },
+            xd: { fontSize: 20 },
             lg: { fontSize: 24 },
             xl: { fontSize: 30 },
             xxl: { fontSize: 50 },

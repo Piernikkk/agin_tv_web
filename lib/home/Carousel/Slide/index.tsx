@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Text from "@/lib/components/Text";
 import { TSlide } from "..";
 import { logoImage, SlideBackgroundFiller, SlideContainer, SlideDescription, SlideElementsContainer, SlideImage } from "./styles";
@@ -13,6 +13,27 @@ export type SlideProps = {
 export default function Slide({ slides, activeSlide, setSlide }: SlideProps) {
     const [prevSlide, setPrevSlide] = useState(activeSlide);
     const [animate, setAnimate] = useState(false);
+
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    useEffect(() => {
+        if (slides == undefined) return;
+        timeoutRef.current = setInterval(() => {
+            slideChange(true);
+        }, 10000);
+
+        return () => {
+            if (timeoutRef.current) {
+                clearInterval(timeoutRef.current);
+            }
+        }
+    }, [activeSlide, slides]);
+
+    // useEffect(() => {
+    //     console.log('effect');
+    //     makeTimeout();
+    // }, [slides]);
+
 
     function animationHandler(slideValue: number) {
         if (prevSlide == slideValue) {
@@ -57,7 +78,7 @@ export default function Slide({ slides, activeSlide, setSlide }: SlideProps) {
                     {slides?.[activeSlide]?.logo_url && <img src={slides?.[activeSlide]?.logo_url} className={logoImage} />}
                     <Text lineClamp={5} size="md">{slides?.[activeSlide]?.description || 'Loading...'}</Text>
                 </div>
-                {(slides && slides?.length > 0) && <CarouselControls slides={slides} activeSlide={activeSlide} setActiveSlide={setSlide} onLeftClick={() => slideChange(false)} onRightClick={() => slideChange(true)} />}
+                {(slides && slides?.length > 1) && <CarouselControls slides={slides} activeSlide={activeSlide} setActiveSlide={setSlide} onLeftClick={() => slideChange(false)} onRightClick={() => slideChange(true)} />}
             </div>
         </div>
     )

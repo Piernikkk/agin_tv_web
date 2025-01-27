@@ -3,7 +3,7 @@ import MovieTile, { TMovieTile } from "@/lib/MovieTile";
 import { continueWatchingContainer, movieTilesList } from "./styles";
 
 type ContinueWatchingProps = {
-    tiles: TMovieTile[],
+    tiles?: TMovieTile[],
     name: string
 }
 
@@ -13,7 +13,7 @@ export default function Section({ name, tiles }: ContinueWatchingProps) {
         <div className={continueWatchingContainer}>
             <Text size="lg" weight={600}>{name}</Text>
             <div className={movieTilesList}>
-                {tiles.map((tile, index) => <MovieTile key={index} {...tile} />)}
+                {tiles?.map((tile, index) => <MovieTile key={index} {...tile} />)}
             </div>
         </div>
     );

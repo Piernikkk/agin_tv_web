@@ -8,11 +8,11 @@ export interface MovieTileBaseComponentProps extends React.HTMLAttributes<HTMLDi
     ref?: React.Ref<HTMLDivElement>;
 }
 
-export default function MovieTileBaseComponent({ background_url, name, position, duration, hovered, bigger, ref, ...props }: MovieTileBaseComponentProps) {
+export default function MovieTileBaseComponent({ episode: { cover_url, movie_name }, position, duration, hovered, bigger, ref, ...props }: MovieTileBaseComponentProps) {
     return (
         <div onClick={() => window.open('https://niggafart.com')} {...props} ref={ref} className={movieTileBaseContainer({ hovered, bigger })}>
             <div className={movieTileImage({ hovered })}>
-                <img src={background_url} alt={name} className={css({ aspectRatio: 16 / 9, height: '100%' })} />
+                <img src={cover_url} alt={movie_name} className={css({ aspectRatio: 16 / 9, height: '100%' })} />
                 {(position && duration) && <div style={{
                     position: 'absolute',
                     top: 171,

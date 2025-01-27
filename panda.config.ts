@@ -33,6 +33,10 @@ export default defineConfig({
             0: { value: '#121212' },
             1: { value: '#242424' },
           },
+          contrast: {
+            0: { value: '#ffffff' },
+            1: { value: '#7d7d7d' },
+          },
           text: {
             0: { value: '#E9ECEF' },
             1: { value: '#A1A1AA' },

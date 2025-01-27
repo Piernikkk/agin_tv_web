@@ -12,6 +12,7 @@
   "dependencies": {
     "@tabler/icons-react": "^3.28.1",
     "axios": "^1.7.9",
+    "babel-plugin-react-compiler": "^19.0.0-beta-27714ef-20250124",
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

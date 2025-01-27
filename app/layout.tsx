@@ -14,9 +14,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+
   return (
     <html lang="en" className={`${poppins.variable}`}>
       <head>
+        {/* <script src="https://unpkg.com/react-scan/dist/auto.global.js"></script> */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>

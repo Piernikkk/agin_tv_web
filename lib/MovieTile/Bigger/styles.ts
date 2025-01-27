@@ -1,4 +1,4 @@
-import { cva } from "@/styled-system/css";
+import { css, cva } from "@/styled-system/css";
 
 export const MovieTileDetails = cva({
     base: {
@@ -31,3 +31,16 @@ export const MovieTileDetails = cva({
         }
     }
 });
+
+export const movieTileDetailsButtons = css({
+    display: 'flex',
+    gap: '10px',
+    alignItems: 'center',
+})
+
+export const movieTileTopInfo = css({
+    display: 'flex',
+    // gap: '10px',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+})

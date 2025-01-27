@@ -7,16 +7,22 @@ import { ContentRefContext } from "../TabBar";
 import MovieTileBaseComponent from "./MovieTileBaseComponent";
 
 export type TMovieTile = {
-    background_url: string,
-    name: string,
-    episodeName?: string,
-    position?: number,
-    duration?: number,
-    description?: string,
+    link?: string,
+    position: number,
+    duration: number,
+    episode: {
+        cover_url: string,
+        movie_name: string,
+        name: string,
+        description?: string,
+        season: number,
+        episode: number,
+        tmdb_movie_id: string,
+    }
 }
 
 
-export default function MovieTile({ background_url, name, position, episodeName, duration }: TMovieTile) {
+export default function MovieTile({ position, duration, episode }: TMovieTile) {
     const movieTileRef = useRef<HTMLDivElement | null>(null);
     const contentRef = useContext(ContentRefContext);
     const [hovered, setHovered] = useState(false);
@@ -61,7 +67,7 @@ export default function MovieTile({ background_url, name, position, episodeName,
     useEffect(() => {
         const movieTile = movieTileRef.current;
         const setTrue = () => {
-            timeoutRef.current = setTimeout(() => setHovered(true), 1000);
+            timeoutRef.current = setTimeout(() => setHovered(true), 500);
             return () => {
                 if (timeoutRef.current) {
                     clearTimeout(timeoutRef.current);
@@ -96,19 +102,16 @@ export default function MovieTile({ background_url, name, position, episodeName,
         <>
             {(hovered && contentRef?.current) && createPortal(<MovieTileBigger
                 hovered={hovered}
-                episodeName={episodeName}
+                episode={episode}
                 setHovered={setHovered}
                 parentPosition={highlightPosition}
-                background_url={background_url}
-                name={name}
                 position={position}
                 duration={duration}
             />, contentRef?.current)}
 
             <MovieTileBaseComponent
                 hovered={hovered}
-                background_url={background_url}
-                name={name}
+                episode={episode}
                 position={position}
                 duration={duration}
                 ref={movieTileRef} >
