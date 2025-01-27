@@ -11,9 +11,10 @@ export type TSlide = {
 }
 
 export interface CarouselProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
-    slides: TSlide[],
+    slides: TSlide[] | undefined,
 
 }
+
 
 export default function Carousel({ slides, ...props }: CarouselProps) {
     const [activeSlide, setActiveSlide] = useState(0);

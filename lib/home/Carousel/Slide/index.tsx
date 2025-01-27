@@ -5,7 +5,7 @@ import { logoImage, SlideBackgroundFiller, SlideContainer, SlideDescription, Sli
 import CarouselControls from "../Controls";
 
 export type SlideProps = {
-    slides: TSlide[],
+    slides: TSlide[] | undefined,
     activeSlide: number,
     setSlide: React.Dispatch<React.SetStateAction<number>>,
 }
@@ -30,6 +30,8 @@ export default function Slide({ slides, activeSlide, setSlide }: SlideProps) {
     }
 
     function slideChange(right?: boolean) {
+        if (slides == undefined) return;
+
         if (right == true) {
             if (activeSlide === slides.length - 1) {
                 animationHandler(0);
@@ -47,15 +49,15 @@ export default function Slide({ slides, activeSlide, setSlide }: SlideProps) {
 
     return (
         <div className={SlideContainer}>
-            <img src={slides[activeSlide].background_url} alt={slides[activeSlide].name} className={SlideImage({ animate })} />
+            <img src={slides?.[activeSlide]?.background_url} alt={slides?.[activeSlide]?.name} className={SlideImage({ animate })} />
             <div className={SlideBackgroundFiller} />
             <div className={SlideElementsContainer}>
-                <div className={SlideDescription({ padding: !!slides[activeSlide].logo_url, animate })}>
-                    {!slides[activeSlide].logo_url && <Text weight={600} size="xxl">{slides[activeSlide].name}</Text>}
-                    {slides[activeSlide].logo_url && <img src={slides[activeSlide].logo_url} className={logoImage} />}
-                    <Text size="md">{slides[activeSlide].description}</Text>
+                <div className={SlideDescription({ padding: !!slides?.[activeSlide]?.logo_url, animate })}>
+                    {!slides?.[activeSlide]?.logo_url && <Text weight={600} size="xxl">{slides?.[activeSlide]?.name || 'Loading...'}</Text>}
+                    {slides?.[activeSlide]?.logo_url && <img src={slides?.[activeSlide]?.logo_url} className={logoImage} />}
+                    <Text lineClamp={5} size="md">{slides?.[activeSlide]?.description || 'Loading...'}</Text>
                 </div>
-                <CarouselControls slides={slides} activeSlide={activeSlide} setActiveSlide={setSlide} onLeftClick={() => slideChange(false)} onRightClick={() => slideChange(true)} />
+                {(slides && slides?.length > 0) && <CarouselControls slides={slides} activeSlide={activeSlide} setActiveSlide={setSlide} onLeftClick={() => slideChange(false)} onRightClick={() => slideChange(true)} />}
             </div>
         </div>
     )

@@ -53,7 +53,7 @@ export const SlideElementsContainer = css({
 export const SlideDescription = cva({
     base: {
         maxWidth: '50%',
-        padding: '8% 3%',
+        padding: '3% 3%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',

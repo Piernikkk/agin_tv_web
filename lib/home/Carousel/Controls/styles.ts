@@ -2,7 +2,7 @@ import { css } from "@/styled-system/css";
 
 export const CarouselControlsContainer = css({
     maxWidth: '50%',
-    padding: '8% 3%',
+    padding: '3% 3%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',

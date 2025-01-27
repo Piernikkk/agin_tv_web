@@ -9,13 +9,14 @@ import MovieTileBaseComponent from "./MovieTileBaseComponent";
 export type TMovieTile = {
     background_url: string,
     name: string,
+    episodeName?: string,
     position?: number,
     duration?: number,
     description?: string,
 }
 
 
-export default function MovieTile({ background_url, name, position, duration }: TMovieTile) {
+export default function MovieTile({ background_url, name, position, episodeName, duration }: TMovieTile) {
     const movieTileRef = useRef<HTMLDivElement | null>(null);
     const contentRef = useContext(ContentRefContext);
     const [hovered, setHovered] = useState(false);
@@ -95,6 +96,7 @@ export default function MovieTile({ background_url, name, position, duration }: 
         <>
             {(hovered && contentRef?.current) && createPortal(<MovieTileBigger
                 hovered={hovered}
+                episodeName={episodeName}
                 setHovered={setHovered}
                 parentPosition={highlightPosition}
                 background_url={background_url}

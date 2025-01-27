@@ -5,8 +5,14 @@ export const text = cva({
         fontWeight: 500,
         color: 'text.0',
         fontSize: 18,
+        overflow: 'hidden',
+        lineClamp: 'unset'
     },
     variants: {
+        lineClamp: {
+            5: { lineClamp: 5 },
+            10: { lineClamp: 10 },
+        },
         size: {
             xxs: { fontSize: 12 },
             xs: { fontSize: 14 },

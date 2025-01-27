@@ -12,7 +12,7 @@ export interface MovieTileBiggerProps extends TMovieTile {
     hovered: boolean,
 }
 
-export default function MovieTileBigger({ background_url, name, position, duration, parentPosition = { x: 0, y: 0, width: 0, height: 0 }, setHovered }: MovieTileBiggerProps) {
+export default function MovieTileBigger({ background_url, name, position, episodeName, duration, parentPosition = { x: 0, y: 0, width: 0, height: 0 }, setHovered }: MovieTileBiggerProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
     const [visible, setVisible] = useState(false);
@@ -82,11 +82,7 @@ export default function MovieTileBigger({ background_url, name, position, durati
         >
             <div className={MovieTileDetails({ visible })}>
                 <Text weight={600}>{name}</Text>
-                <Text>{name}</Text>
-                <Text>{name}</Text>
-                <Text>{name}</Text>
-                <Text>{name}</Text>
-                <Text>{name}</Text>
+                <Text size="xxs" weight={300}>{episodeName}</Text>
             </div>
         </MovieTileBaseComponent>
     )
