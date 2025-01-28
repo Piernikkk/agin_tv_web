@@ -13,7 +13,12 @@ export const loginFormContainer = css({
     width: '300px',
     display: 'flex',
     justifyContent: 'center',
+    border: '1px solid',
+    padding: '30px',
+    borderColor: 'border',
     alignItems: 'center',
     flexDirection: 'column',
+    // border: '1px solid',
+    // borderColor: 'border',
     gap: '10px'
 });
