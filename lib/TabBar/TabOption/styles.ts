@@ -57,6 +57,12 @@ export const tabOptionLabel = cva({
                 fontWeight: 500,
                 color: 'violet.7',
             }
+        },
+        size: {
+            30: { fontSize: 30 },
+            40: { fontSize: 40 },
+            60: { fontSize: 60 },
+            80: { fontSize: 80 },
         }
     }
 

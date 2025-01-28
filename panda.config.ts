@@ -46,6 +46,10 @@ export default defineConfig({
           border: {
             value: '#ffffff20',
           },
+          icon: {
+            0: { value: '#ffffff' },
+            1: { value: '#7d7d7d' },
+          },
           violet: {
             0: { value: '#f7ecff' },
             1: { value: '#e7d6fb' },

@@ -5,5 +5,5 @@ export const tabBarHeader = css({
     paddingRight: '10px',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    gap: '15px',
+    gap: '10px',
 })
