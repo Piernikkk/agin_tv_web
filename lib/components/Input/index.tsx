@@ -9,11 +9,12 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
     large?: boolean;
     ref?: React.RefObject<HTMLInputElement>;
     radius?: boolean;
+    width?: number | string;
 }
 
-export default function Input({ label, icon: Icon, radius, large, onChange, ref, ...props }: InputProps) {
+export default function Input({ label, icon: Icon, radius, large, onChange, ref, width, ...props }: InputProps) {
     return (
-        <div>
+        <div style={{ width: width || '200px' }}>
             {label && <div className={inputLabel({ large })}>{label}</div>}
             <div className={inputWrapper({ radius, Icon: !!Icon, large })}>
                 {Icon && <Icon size={large ? 24 : 16} color={token('colors.icon.0')} />}

@@ -23,6 +23,11 @@ export const buttonContainer = cva({
                     backgroundColor: 'contrast.1',
                 },
             }
+        },
+        text: {
+            true: {
+                padding: '10px',
+            }
         }
     }
 })

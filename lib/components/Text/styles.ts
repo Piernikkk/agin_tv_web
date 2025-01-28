@@ -38,7 +38,8 @@ export const text = cva({
             1: { color: 'text.0' },
             2: { color: 'text.1' },
             3: { color: 'text.2' },
-            4: { color: 'text.4' },
+            4: { color: 'text.3' },
+            5: { color: 'text.4' },
             agin: {
                 background: 'linear-gradient(5deg, rgb(163, 99, 240) 0%, rgb(85, 14, 143) 100%)',
                 backgroundClip: 'text',

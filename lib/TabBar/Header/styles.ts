@@ -6,4 +6,5 @@ export const tabBarHeader = css({
     justifyContent: 'flex-start',
     alignItems: 'center',
     gap: '10px',
+    zIndex: 1,
 })

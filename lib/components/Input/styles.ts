@@ -4,7 +4,7 @@ export const inputLabel = cva({
     base: {
         fontSize: 14,
         color: 'text.0',
-        marginBottom: 5,
+        marginBottom: 1,
     },
     variants: {
         large: {
@@ -20,6 +20,7 @@ export const inputWrapper = cva({
         border: `1px solid`,
         borderColor: 'border',
         display: 'flex',
+        overflow: 'hidden',
         alignItems: 'center',
         gap: '5px',
         borderRadius: '10px',
@@ -64,7 +65,7 @@ export const inputStyle = cva({
         color: 'text.0',
         outline: 'none',
         border: 'none',
-        backgroundColor: 'transparent',
+        backgroundColor: 'tile.1',
         padding: '12px 16px',
         // paddingLeft: Icon ? large ? 10 : 6 : undefined,
         fontFamily: 'Poppins',
