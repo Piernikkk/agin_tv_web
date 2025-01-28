@@ -23,6 +23,14 @@ export const tabOptionContainer = cva({
                     backgroundColor: 'dimmed.violet.3',
                 }
             }
+        },
+        color: {
+            red: {
+                backgroundColor: 'dimmed.red.6',
+                '&:hover': {
+                    backgroundColor: 'dimmed.red.3',
+                }
+            },
         }
     }
 })
@@ -63,6 +71,11 @@ export const tabOptionLabel = cva({
             40: { fontSize: 40 },
             60: { fontSize: 60 },
             80: { fontSize: 80 },
+        },
+        color: {
+            red: {
+                color: 'red.7',
+            }
         }
     }
 

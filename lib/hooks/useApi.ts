@@ -5,7 +5,7 @@ import { useContext, useMemo } from "react";
 
 export default function useApi() {
     const token = useContext(TokenContext);
-    console.log("apiToken", token);
+    // console.log("apiToken", token);
 
     const api = useMemo(() => axios.create({
         baseURL: apiUrl,
