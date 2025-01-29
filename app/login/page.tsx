@@ -48,11 +48,11 @@ export default function LoginPage() {
             <div className={blurDiv} />
             <TabBarHeader expanded={true} size={60} />
             <div className={loginFormContainer}>
-                <Text size="xl">Log in</Text>
+                <Text weight={600} size="xl">Log in</Text>
                 <Input onChange={(e) => setEmail(e.currentTarget.value)} label="Email" width={'100%'} />
                 <Input onChange={(e) => setPassword(e.currentTarget.value)} type="password" label="Password" width={'100%'} />
                 <div className={css({})} />
-                <Button label="Log in" contrast onClick={async () => login()} />
+                <Button weight={600} label="Log in" contrast onClick={async () => login()} />
             </div>
         </div>
     )

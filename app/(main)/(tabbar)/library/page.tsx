@@ -1,9 +1,10 @@
 import Text from "@/lib/components/Text";
+import { libraryContainer } from "./styles";
 
 export default function Library() {
     return (
-        <div>
-            <Text>Library</Text>
+        <div className={libraryContainer}>
+            <Text weight={600} size="xl">Library</Text>
         </div>
     )
 }
