@@ -8,15 +8,15 @@ import MovieTileBaseComponent from "./MovieTileBaseComponent";
 
 export type TMovieTile = {
     link?: string,
-    position: number,
-    duration: number,
+    position?: number,
+    duration?: number,
     episode: {
-        cover_url: string,
+        cover_url?: string,
         movie_name: string,
-        name: string,
+        name?: string,
         description?: string,
-        season: number,
-        episode: number,
+        season?: number,
+        episode?: number,
         tmdb_movie_id: string,
     }
 }

@@ -4,7 +4,7 @@ export const libraryContainer = css({
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '10px',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    padding: '30px',
 })
