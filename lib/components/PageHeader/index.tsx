@@ -43,7 +43,7 @@ export default function PageHeader({ title, icon: Icon, options, activeOption, b
                     </div>)
                 })}
             </div>}
-            <div className={css({ minWidth: '150px' })}>
+            <div onClick={button?.onClick} className={css({ minWidth: '150px' })}>
                 {button && <Button label={button.label} icon={button.icon} />}
             </div>
 

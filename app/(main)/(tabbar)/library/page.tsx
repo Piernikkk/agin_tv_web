@@ -1,17 +1,19 @@
 'use client'
 import { libraryContainer } from "./styles";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useApi from "@/lib/hooks/useApi";
 import { TMovie } from "@/lib/types/TMovie";
 import MovieTile from "@/lib/MovieTile";
 import PageHeader, { HeaderOptions } from "@/lib/components/PageHeader";
-import { IconFolderFilled, IconLayoutGrid, IconWorld } from "@tabler/icons-react";
+import { IconFolderFilled, IconLayoutGrid, IconUpload, IconWorld } from "@tabler/icons-react";
+import { UploadFileModalContext } from "../layout";
 
 
 export default function Library() {
     const [elements, setElements] = useState<TMovie[]>([]);
     const [activeOption, setActiveOption] = useState<string>('Your Files');
     const api = useApi();
+    const { uploadFile } = useContext(UploadFileModalContext);
 
     const options: HeaderOptions[] = [
         {
@@ -39,7 +41,7 @@ export default function Library() {
 
     return (
         <div className={libraryContainer}>
-            <PageHeader title="Library" icon={IconLayoutGrid} options={options} activeOption={activeOption} />
+            <PageHeader title="Library" icon={IconLayoutGrid} options={options} activeOption={activeOption} button={{ label: 'Upload', icon: IconUpload, onClick: uploadFile.open }} />
             {/* TODO:change this to pandaCSS */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
                 {elements.length > 0 && elements?.map((element, index) => (
