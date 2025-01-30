@@ -6,7 +6,8 @@ export const text = cva({
         color: 'text.0',
         fontSize: 18,
         overflow: 'hidden',
-        lineClamp: 'unset'
+        lineClamp: 'unset',
+        transition: 'color 0.2s ease-in-out, fontWeight 0.2s ease-in-out, fontSize 0.2s ease-in-out',
     },
     variants: {
         lineClamp: {

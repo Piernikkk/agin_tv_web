@@ -3,8 +3,11 @@ import { cva } from "@/styled-system/css";
 export const buttonContainer = cva({
     base: {
         cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
         maxWidth: 'fit-content',
-        transition: 'background-color 0.2s ease, borderColor 0.2s ease',
+        transition: 'background-color 0.2s ease, border 0.2s ease',
         borderRadius: '5px',
         padding: '5px',
         borderColor: 'border',

@@ -6,5 +6,5 @@ export const libraryContainer = css({
     flexDirection: 'column',
     // justifyContent: 'center',
     // alignItems: 'center',
-    padding: '30px',
+    padding: '15px 30px',
 })
