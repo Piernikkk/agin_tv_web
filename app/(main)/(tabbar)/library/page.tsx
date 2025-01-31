@@ -3,10 +3,10 @@ import { libraryContainer, libraryElementsContainer } from "./styles";
 import { useContext, useEffect, useState } from "react";
 import useApi from "@/lib/hooks/useApi";
 import { TMovie } from "@/lib/types/TMovie";
-import MovieTile from "@/lib/MovieTile";
 import PageHeader, { HeaderOptions } from "@/lib/components/PageHeader";
 import { IconFolderFilled, IconLayoutGrid, IconUpload, IconWorld } from "@tabler/icons-react";
 import { UploadFileModalContext } from "../layout";
+import LibraryMovieTile from "@/lib/MovieTile/Library";
 
 
 export default function Library() {
@@ -45,7 +45,7 @@ export default function Library() {
             {/* TODO:change this to pandaCSS */}
             <div className={libraryElementsContainer}>
                 {elements.length > 0 && elements?.map((element, index) => (
-                    <MovieTile key={index} episode={{ movie_name: element.name, cover_url: element?.horizontal_cover_url, tmdb_movie_id: element.tmdb_id }} />
+                    <LibraryMovieTile key={index} {...element} />
                 ))}
             </div>
         </div>

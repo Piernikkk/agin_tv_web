@@ -11,6 +11,7 @@ export const text = cva({
     },
     variants: {
         lineClamp: {
+            1: { lineClamp: 1 },
             5: { lineClamp: 5 },
             10: { lineClamp: 10 },
         },

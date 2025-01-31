@@ -6,7 +6,7 @@ export const pageHeaderContainer = cva({
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        marginBottom: '20px'
+        marginBottom: '30px'
     },
     variants: {
         options: {

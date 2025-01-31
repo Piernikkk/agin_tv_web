@@ -1,3 +1,5 @@
+import { TGenre } from "./TGenre";
+
 export interface TMovie {
     _id?: string;
     name: string;
@@ -10,7 +12,7 @@ export interface TMovie {
     background_url?: string;
     logo_url?: string;
     tmdb_id: string;
-    // genres: mongoose.Types.ObjectId[];
+    genres: TGenre[];
     seasons: {
         season_number: number;
         name: string;
