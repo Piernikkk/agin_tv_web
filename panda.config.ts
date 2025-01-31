@@ -8,6 +8,7 @@ const globalCss = defineGlobalStyles({
     display: 'flex',
     flexDirection: 'column',
     boxSizing: 'border-box',
+    color: 'text.0',
   }
 });
 
@@ -26,6 +27,12 @@ export default defineConfig({
     extend: {
       tokens: {
         colors: {
+          primary: {
+            value: '#7b2eda',
+            dark: {
+              value: '#6921c2',
+            }
+          },
           background: {
             value: '#000000',
           },
@@ -46,6 +53,12 @@ export default defineConfig({
           },
           border: {
             value: '#ffffff50',
+          },
+          websiteBorder: {
+            value: '#ffffff10',
+            1: {
+              value: '#ffffff15',
+            }
           },
           icon: {
             0: { value: '#ffffff' },
