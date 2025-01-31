@@ -9,6 +9,7 @@ export const movieTileBaseContainer = cva({
         // overflow: 'hidden',
         position: 'relative',
         cursor: 'pointer',
+        zIndex: 99,
     },
     variants: {
         bigger: {

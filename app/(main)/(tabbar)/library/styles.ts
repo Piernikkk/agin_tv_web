@@ -7,4 +7,10 @@ export const libraryContainer = css({
     // justifyContent: 'center',
     // alignItems: 'center',
     padding: '15px 30px',
+});
+
+export const libraryElementsContainer = css({
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gap: '10px'
 })

@@ -1,11 +1,16 @@
 import { css } from "@/styled-system/css";
-import { TMovieTile } from "..";
 import { movieTileBaseContainer, movieTileImage } from "./styles";
 
-export interface MovieTileBaseComponentProps extends React.HTMLAttributes<HTMLDivElement>, TMovieTile {
+export interface MovieTileBaseComponentProps extends React.HTMLAttributes<HTMLDivElement> {
     hovered?: boolean;
     bigger?: boolean;
     ref?: React.Ref<HTMLDivElement>;
+    episode: {
+        cover_url?: string,
+        movie_name: string,
+    },
+    position?: number,
+    duration?: number,
 }
 
 export default function MovieTileBaseComponent({ episode: { cover_url, movie_name }, position, duration, hovered, bigger, ref, ...props }: MovieTileBaseComponentProps) {

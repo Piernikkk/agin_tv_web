@@ -17,4 +17,4 @@ export const UploadFileInputs = css({
     width: '100%',
     flex: 1,
     boxSizing: 'border-box',
-})
+});

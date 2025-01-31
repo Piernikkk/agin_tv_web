@@ -1,5 +1,5 @@
 'use client'
-import { libraryContainer } from "./styles";
+import { libraryContainer, libraryElementsContainer } from "./styles";
 import { useContext, useEffect, useState } from "react";
 import useApi from "@/lib/hooks/useApi";
 import { TMovie } from "@/lib/types/TMovie";
@@ -43,7 +43,7 @@ export default function Library() {
         <div className={libraryContainer}>
             <PageHeader title="Library" icon={IconLayoutGrid} options={options} activeOption={activeOption} button={{ label: 'Upload', icon: IconUpload, onClick: uploadFile.open }} />
             {/* TODO:change this to pandaCSS */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
+            <div className={libraryElementsContainer}>
                 {elements.length > 0 && elements?.map((element, index) => (
                     <MovieTile key={index} episode={{ movie_name: element.name, cover_url: element?.horizontal_cover_url, tmdb_movie_id: element.tmdb_id }} />
                 ))}

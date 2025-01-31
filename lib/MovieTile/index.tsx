@@ -21,8 +21,11 @@ export type TMovieTile = {
     }
 }
 
+interface MovieTileProps extends TMovieTile {
+    children?: React.ReactNode,
+}
 
-export default function MovieTile({ position, duration, episode }: TMovieTile) {
+export default function MovieTile({ position, duration, episode, children }: MovieTileProps) {
     const movieTileRef = useRef<HTMLDivElement | null>(null);
     const contentRef = useContext(ContentRefContext);
     const [hovered, setHovered] = useState(false);
@@ -107,7 +110,9 @@ export default function MovieTile({ position, duration, episode }: TMovieTile) {
                 parentPosition={highlightPosition}
                 position={position}
                 duration={duration}
-            />, contentRef?.current)}
+            >
+                {children}
+            </MovieTileBigger>, document.body)}
 
             <MovieTileBaseComponent
                 hovered={hovered}

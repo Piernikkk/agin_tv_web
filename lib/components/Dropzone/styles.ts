@@ -8,9 +8,17 @@ export const dropzoneStyles = css({
     width: '100%',
     textAlign: 'center',
     cursor: 'pointer',
+    gap: '10px',
     color: 'text.3',
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
+    flexDirection: 'column',
     marginBottom: '5px'
 });
+
+export const filePreviewContainer = css({
+    display: 'flex',
+    gap: '10px',
+    alignItems: 'center',
+})

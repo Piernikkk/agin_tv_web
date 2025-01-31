@@ -2,19 +2,17 @@
 import { TMovieTile } from "..";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import MovieTileBaseComponent from "../MovieTileBaseComponent";
-import Text from "@/lib/components/Text";
-import { MovieTileDetails, movieTileDetailsButtons, movieTileTopInfo } from "./styles";
-import Button from "@/lib/components/Button";
-import { IconPlayerPlayFilled, IconPlus, IconX } from "@tabler/icons-react";
+import { MovieTileDetails } from "./styles";
 
 export interface MovieTileBiggerProps extends TMovieTile {
     description?: string,
     parentPosition?: { x: number, y: number, width: number, height: number },
     setHovered: React.Dispatch<React.SetStateAction<boolean>>,
     hovered: boolean,
+    children?: React.ReactNode,
 }
 
-export default function MovieTileBigger({ episode: { cover_url, movie_name, name, episode, season, tmdb_movie_id }, position, duration, parentPosition = { x: 0, y: 0, width: 0, height: 0 }, setHovered }: MovieTileBiggerProps) {
+export default function MovieTileBigger({ episode: { cover_url, movie_name }, children, position, duration, parentPosition = { x: 0, y: 0, width: 0, height: 0 }, setHovered }: MovieTileBiggerProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
     const [visible, setVisible] = useState(false);
@@ -74,7 +72,7 @@ export default function MovieTileBigger({ episode: { cover_url, movie_name, name
     return (
         <MovieTileBaseComponent
             ref={containerRef}
-            episode={{ cover_url, movie_name, name, episode, season, tmdb_movie_id }}
+            episode={{ cover_url, movie_name }}
             position={position}
             duration={duration}
             hovered={visible}
@@ -82,16 +80,17 @@ export default function MovieTileBigger({ episode: { cover_url, movie_name, name
             style={{ left: parentPosition?.x - ((containerSize.width - parentPosition?.width) / 2), top: parentPosition?.y - ((containerSize.height - parentPosition?.height) / 2) }}
         >
             <div className={MovieTileDetails({ visible })}>
-                <div className={movieTileTopInfo}>
+                {children}
+                {/* <div className={movieTileTopInfo}>
                     <div className={movieTileDetailsButtons}>
                         <Button icon={IconPlayerPlayFilled} color="#000" contrast />
                         <Button icon={IconPlus} color="#fff" />
                         <Button icon={IconX} color="#fff" />
                     </div>
-                    <Text size="xxs" weight={500}>{Math.round(position / 60)} of {Math.round(duration / 60)} min</Text>
+                    {(position && duration) && <Text size="xxs" weight={500}>{Math.round(position / 60)} of {Math.round(duration / 60)} min</Text>}
                 </div>
                 <Text size="xd" weight={600}>{movie_name}</Text>
-                <Text size="xxs" weight={300}>S{season?.toString().padStart(2, '0')}E{episode?.toString().padStart(2, '0')} • {name}</Text>
+                <Text size="xxs" weight={300}>S{season?.toString().padStart(2, '0')}E{episode?.toString().padStart(2, '0')} • {name}</Text> */}
             </div>
         </MovieTileBaseComponent>
     )
