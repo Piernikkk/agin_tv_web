@@ -4,7 +4,7 @@ import { IconFile, IconTrash } from "@tabler/icons-react";
 import Text from "../Text";
 import { token } from "@/styled-system/tokens";
 import { MouseEvent, useCallback, useContext } from "react";
-import { UserContext } from "@/app/(main)/layout";
+import { UserContext } from "@/app/UserContext";
 import useApi from "@/lib/hooks/useApi";
 
 interface SourceComponentProps extends TFile {
