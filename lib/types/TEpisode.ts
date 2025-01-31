@@ -1,3 +1,5 @@
+import { TFile } from "./TFile";
+
 export interface TEpisode {
     season: number;
     episode: number;
@@ -8,5 +10,5 @@ export interface TEpisode {
     cover_url?: string;
     tmdb_movie_id: string;
     duration?: number;
-    // sources: mongoose.Types.ObjectId[];
+    sources: TFile[];
 }

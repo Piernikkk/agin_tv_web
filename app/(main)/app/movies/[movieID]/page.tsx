@@ -16,15 +16,21 @@ export default function MovieInfoPage() {
     const { movieID } = useParams();
     const [movie, setMovie] = useState<TMovie | null>(null);
     const api = useApi();
+    const [isTV, setIsTV] = useState(false);
     const [season, setSeason] = useState<TMovie['seasons'][0] | undefined>(undefined);
 
     useEffect(() => {
         (async () => {
+            setIsTV(movieID?.[0] == 't');
             if (!movieID || !api) return;
 
-            const fetchMovie = await api.get(`/movies/${movieID}`);
-            setMovie(fetchMovie?.data);
-            setSeason(fetchMovie?.data?.seasons[0]);
+            if (!movie || movie.tmdb_id != movieID) {
+                const fetchMovie = await api.get(`/movies/${movieID}`);
+                console.log(fetchMovie?.data);
+
+                setMovie(fetchMovie?.data);
+                setSeason(fetchMovie?.data?.seasons.find((s: TMovie['seasons'][0]) => s.season_number == 1));
+            }
         })();
     }, [movieID, api]);
 
@@ -49,24 +55,24 @@ export default function MovieInfoPage() {
                 </div>
             </div>
             <div className={MovieInfoContainer}>
-                <Text size="xl" weight={600}>Episodes</Text>
-                <Popover opened={opened} setOpened={setOpened}>
-                    <Popover.Target>
-                        <Input width={'300px'} style={{ caretColor: 'transparent' }} readOnly value={`${season?.season_number}: ${season?.name}`} />
-                    </Popover.Target>
-                    <Popover.Content>
-                        <div className={seasonPickerContainer}>
-                            {movie?.seasons?.map((season, index) => <div onClick={() => { setSeason(season); setOpened(false) }} className={seasonPickerItem} key={index}>
-                                <Text>{season.season_number}: {season.name}</Text>
-                            </div>)}
-                        </div>
-                    </Popover.Content>
-                </Popover>
-                <div className={episodesContainer}>
-                    {
-                        movie?.episodes.filter(m => m?.season == season?.season_number).map((episode, index) => <Episode key={index} {...episode} />)
-                    }
-                </div>
+                {isTV && <><Text size="xl" weight={600}>Episodes</Text>
+                    <Popover opened={opened} setOpened={setOpened}>
+                        <Popover.Target>
+                            <Input width={'300px'} style={{ caretColor: 'transparent' }} readOnly value={`${season?.season_number}: ${season?.name}`} />
+                        </Popover.Target>
+                        <Popover.Content>
+                            <div className={seasonPickerContainer}>
+                                {movie?.seasons?.map((season, index) => <div onClick={() => { setSeason(season); setOpened(false) }} className={seasonPickerItem} key={index}>
+                                    <Text>{season.season_number}: {season.name}</Text>
+                                </div>)}
+                            </div>
+                        </Popover.Content>
+                    </Popover>
+                    <div className={episodesContainer}>
+                        {
+                            movie?.episodes.filter(m => m?.season == season?.season_number).map((episode, index) => <Episode key={index} {...episode} />)
+                        }
+                    </div></>}
             </div>
         </div>
     )

@@ -54,7 +54,7 @@ export const movieTileImage = cva({
             }
         },
         height: {
-            full: { height: '100%' }
+            full: { height: '100%', maxWidth: '500px' }
         }
     }
 })
