@@ -1,0 +1,167 @@
+.video {
+    /* width: 100vw;
+    height: 100vh;
+    max-width: '100vw';
+    overflow: hidden; */
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+}
+
+.videoControlsContainer {
+    z-index: 200;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    display: flex;
+    opacity: 0;
+    align-items: center;
+    gap: 10px;
+    visibility: hidden;
+}
+
+.videoInfo {
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    display: flex;
+    display: flex;
+    opacity: 0;
+    align-items: center;
+    gap: 10px;
+    visibility: hidden;
+}
+
+
+
+/* .container:focus-within .videoControlsContainer,
+.container:hover .videoControlsContainer {
+    opacity: 1;
+} */
+
+.timelineContainer {
+    height: 7px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 20px;
+    flex: 1;
+}
+
+
+.timeline {
+    background-color: #ffffff40;
+    height: 3px;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px;
+    position: relative;
+    transition: all .1s ease-in-out;
+}
+
+.gradient {
+    background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 100%);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 200px;
+    opacity: 0;
+    z-index: 199;
+    visibility: hidden;
+}
+
+.gradient2 {
+    background: linear-gradient(180deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 100%);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 200px;
+    opacity: 0;
+    z-index: 199;
+    visibility: hidden;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    background-color: #ffffff60;
+    display: none;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: calc(100% - var(--preview-position) * 100%);
+    border-radius: 20px;
+}
+
+.timeline::after {
+    content: "";
+    position: absolute;
+    background-color: #ffffff;
+    /* display: none; */
+    left: 0;
+    border-radius: 20px;
+    top: 0;
+    bottom: 0;
+    right: calc(100% - var(--progress-position) * 100%);
+}
+
+.container.scrubbing .timeline::before,
+.timelineContainer:hover .timeline::before {
+    display: block;
+}
+
+
+
+.container.scrubbing .timeline,
+.timelineContainer:hover .timeline {
+    height: 100%;
+}
+
+.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.noCursor {
+    cursor: none;
+}
+
+.animate {
+    transition: all .2s ease-in-out;
+}
+
+.links {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    z-index: 2000;
+    background-color: #ffffff;
+}

@@ -19,7 +19,8 @@ export default function Dropzone({ onDrop }: DropzoneProps) {
 
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: onDropCallback,
-        maxFiles: 1
+        maxFiles: 1,
+        accept: { 'video/*': [] },
     });
 
     return (

@@ -17,7 +17,7 @@ export default function LoginPage() {
         await axios?.post(`${apiUrl}/user/login`, { email, password }).then((res) => {
             if (res.data.token) {
                 localStorage.setItem('token', res.data.token);
-                window.location.href = '/';
+                window.location.href = '/app';
             }
         }, (err) => {
             if (err?.response?.status === 403) {
