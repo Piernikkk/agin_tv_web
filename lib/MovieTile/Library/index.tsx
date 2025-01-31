@@ -4,11 +4,14 @@ import { movieTileDetailsButtons, movieTileTopInfo } from "../Bigger/styles";
 import { IconPlayerPlayFilled, IconPlus } from "@tabler/icons-react";
 import Button from "@/lib/components/Button";
 import Text from "@/lib/components/Text";
+import { useRouter } from "next/navigation";
 
 export default function LibraryMovieTile({ name, horizontal_cover_url, tmdb_id, genres }: TMovie) {
+    const router = useRouter();
 
     return (
         <MovieTile
+            onClick={() => router.push(`/movies/${tmdb_id}`)}
             episode={{ movie_name: name, cover_url: horizontal_cover_url, tmdb_movie_id: tmdb_id }}
         >
             <div className={movieTileTopInfo}>

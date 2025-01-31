@@ -1,3 +1,4 @@
+import { TEpisode } from "./TEpisode";
 import { TGenre } from "./TGenre";
 
 export interface TMovie {
@@ -20,5 +21,5 @@ export interface TMovie {
         description: string;
         vertical_cover_url: string;
     }[];
-    // episodes: mongoose.Types.ObjectId[];
+    episodes: TEpisode[];
 }

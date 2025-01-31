@@ -4,6 +4,7 @@ import { movieTileBaseContainer, movieTileImage } from "./styles";
 export interface MovieTileBaseComponentProps extends React.HTMLAttributes<HTMLDivElement> {
     hovered?: boolean;
     bigger?: boolean;
+    height?: "full";
     ref?: React.Ref<HTMLDivElement>;
     episode: {
         cover_url?: string,
@@ -13,10 +14,10 @@ export interface MovieTileBaseComponentProps extends React.HTMLAttributes<HTMLDi
     duration?: number,
 }
 
-export default function MovieTileBaseComponent({ episode: { cover_url, movie_name }, position, duration, hovered, bigger, ref, ...props }: MovieTileBaseComponentProps) {
+export default function MovieTileBaseComponent({ episode: { cover_url, movie_name }, height, onClick, position, duration, hovered, bigger, ref, ...props }: MovieTileBaseComponentProps) {
     return (
-        <div onClick={() => window.open('https://niggafart.com')} {...props} ref={ref} className={movieTileBaseContainer({ hovered, bigger })}>
-            <div className={movieTileImage({ hovered })}>
+        <div onClick={onClick} {...props} ref={ref} className={movieTileBaseContainer({ hovered, bigger })}>
+            <div className={movieTileImage({ hovered, height })}>
                 <img src={cover_url} alt={movie_name} className={css({ aspectRatio: 16 / 9, height: '100%' })} />
                 {(position && duration) && <div style={{
                     position: 'absolute',

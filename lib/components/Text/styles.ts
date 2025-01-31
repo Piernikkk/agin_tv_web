@@ -12,6 +12,7 @@ export const text = cva({
     variants: {
         lineClamp: {
             1: { lineClamp: 1 },
+            2: { lineClamp: 2 },
             5: { lineClamp: 5 },
             10: { lineClamp: 10 },
         },
@@ -48,6 +49,7 @@ export const text = cva({
                 color: 'transparent',
                 WebkitTextFillColor: 'transparent'
             }
-        }
+        },
+
     }
 });

@@ -17,6 +17,9 @@ export default function Home() {
     (async () => {
       if (api == null) return;
       const { data }: AxiosResponse<{ carousel: TSlide[], continueWatching: TMovieTile[] }> = await api.get('/home');
+      // const data2 = await api.get('/movies/t95269');
+      // console.log(data2.data);
+
       setSlides(data?.carousel);
       setContinueWatching(data?.continueWatching);
     })()

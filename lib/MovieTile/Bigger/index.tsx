@@ -12,7 +12,7 @@ export interface MovieTileBiggerProps extends TMovieTile {
     children?: React.ReactNode,
 }
 
-export default function MovieTileBigger({ episode: { cover_url, movie_name }, children, position, duration, parentPosition = { x: 0, y: 0, width: 0, height: 0 }, setHovered }: MovieTileBiggerProps) {
+export default function MovieTileBigger({ episode: { cover_url, movie_name }, children, position, duration, onClick, parentPosition = { x: 0, y: 0, width: 0, height: 0 }, setHovered }: MovieTileBiggerProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
     const [visible, setVisible] = useState(false);
@@ -76,6 +76,7 @@ export default function MovieTileBigger({ episode: { cover_url, movie_name }, ch
             position={position}
             duration={duration}
             hovered={visible}
+            onClick={onClick}
             bigger
             style={{ left: parentPosition?.x - ((containerSize.width - parentPosition?.width) / 2), top: parentPosition?.y - ((containerSize.height - parentPosition?.height) / 2) }}
         >

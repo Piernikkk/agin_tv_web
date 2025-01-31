@@ -10,6 +10,7 @@ export const buttonContainer = cva({
         transition: 'background-color 0.2s ease, border 0.2s ease',
         borderRadius: '5px',
         padding: '5px',
+        justifyContent: 'center',
         borderColor: 'border',
         borderWidth: '1px',
         '&:hover': {
@@ -30,6 +31,11 @@ export const buttonContainer = cva({
         text: {
             true: {
                 padding: '10px',
+            }
+        },
+        large: {
+            true: {
+                minWidth: '200px',
             }
         }
     }

@@ -52,6 +52,9 @@ export const movieTileImage = cva({
             true: {
                 borderBottomRadius: '0px',
             }
+        },
+        height: {
+            full: { height: '100%' }
         }
     }
 })

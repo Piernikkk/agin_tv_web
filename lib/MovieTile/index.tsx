@@ -10,6 +10,7 @@ export type TMovieTile = {
     link?: string,
     position?: number,
     duration?: number,
+    onClick?: () => void,
     episode: {
         cover_url?: string,
         movie_name: string,
@@ -25,7 +26,7 @@ interface MovieTileProps extends TMovieTile {
     children?: React.ReactNode,
 }
 
-export default function MovieTile({ position, duration, episode, children }: MovieTileProps) {
+export default function MovieTile({ position, duration, episode, children, onClick }: MovieTileProps) {
     const movieTileRef = useRef<HTMLDivElement | null>(null);
     const contentRef = useContext(ContentRefContext);
     const [hovered, setHovered] = useState(false);
@@ -106,6 +107,7 @@ export default function MovieTile({ position, duration, episode, children }: Mov
             {(hovered && contentRef?.current) && createPortal(<MovieTileBigger
                 hovered={hovered}
                 episode={episode}
+                onClick={onClick}
                 setHovered={setHovered}
                 parentPosition={highlightPosition}
                 position={position}
@@ -115,6 +117,7 @@ export default function MovieTile({ position, duration, episode, children }: Mov
             </MovieTileBigger>, document.body)}
 
             <MovieTileBaseComponent
+                onClick={onClick}
                 hovered={hovered}
                 episode={episode}
                 position={position}
