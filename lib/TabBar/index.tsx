@@ -14,17 +14,17 @@ export type TabBarProps = {
 
 const options = [
     {
-        href: '/',
+        href: '/app',
         label: 'Home',
         icon: IconHome,
     },
     {
-        href: '/library',
+        href: '/app/library',
         label: 'Library',
         icon: IconLayoutGrid,
     },
     {
-        href: '/history',
+        href: '/app/history',
         label: 'History',
         icon: IconHistory,
     }

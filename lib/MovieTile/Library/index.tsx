@@ -11,7 +11,7 @@ export default function LibraryMovieTile({ name, horizontal_cover_url, tmdb_id, 
 
     return (
         <MovieTile
-            onClick={() => router.push(`/movies/${tmdb_id}`)}
+            onClick={() => router.push(`/app/movies/${tmdb_id}`)}
             episode={{ movie_name: name, cover_url: horizontal_cover_url, tmdb_movie_id: tmdb_id }}
         >
             <div className={movieTileTopInfo}>

@@ -1,11 +1,14 @@
 'use client'
 import { apiUrl } from "@/lib/config";
+import { TUser } from "@/lib/types/TUser";
 import axios from "axios";
 import { createContext, ReactNode, useLayoutEffect, useState } from "react";
 import { TokenContext } from "../TokenContext";
+import { UserContext } from "../UserContext";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
     const [token, setToken] = useState<string | null>(null);
+    const [user, setUser] = useState<TUser | null>(null);
 
     useLayoutEffect(() => {
         (async () => {
@@ -18,24 +21,32 @@ export default function MainLayout({ children }: { children: ReactNode }) {
                 return;
             }
             setToken(storage);
-            await axios.get(`${apiUrl}/user/`, {
+            await axios.get<TUser>(`${apiUrl}/user/`, {
                 headers: {
                     Authorization: `Token ${storage}`
                 }
-            }).then(() => { }, err => {
+            }).then((user) => {
+                console.log(user?.data);
+                setUser(user?.data);
+            }, err => {
                 console.error(err);
                 if (err.status === 401) {
                     localStorage.removeItem('token');
                     window.location.href = '/login';
                 }
             });
+
+
+
         })();
     }, []);
 
     return (
         <>
             <TokenContext.Provider value={token}>
-                {children}
+                <UserContext.Provider value={user}>
+                    {children}
+                </UserContext.Provider>
             </TokenContext.Provider>
         </>
     )

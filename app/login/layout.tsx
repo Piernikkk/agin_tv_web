@@ -16,7 +16,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
                     Authorization: `Token ${storage}`
                 }
             }).then(() => {
-                window.location.href = '/';
+                window.location.href = '/app';
             }, (err) => {
                 if (err?.response?.status === 401) {
                     localStorage.removeItem('token');
