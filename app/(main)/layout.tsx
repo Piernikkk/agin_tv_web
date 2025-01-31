@@ -2,8 +2,7 @@
 import { apiUrl } from "@/lib/config";
 import axios from "axios";
 import { createContext, ReactNode, useLayoutEffect, useState } from "react";
-
-export const TokenContext = createContext<string | null>(null);
+import { TokenContext } from "../TokenContext";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
     const [token, setToken] = useState<string | null>(null);

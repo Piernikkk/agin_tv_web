@@ -3,8 +3,6 @@ import { apiUrl } from "@/lib/config";
 import axios from "axios";
 import { createContext, ReactNode, useLayoutEffect } from "react";
 
-export const TokenContext = createContext<string | null>(null);
-
 export default function MainLayout({ children }: { children: ReactNode }) {
     useLayoutEffect(() => {
         (async () => {

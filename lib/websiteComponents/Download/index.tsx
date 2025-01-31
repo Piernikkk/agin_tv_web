@@ -2,7 +2,7 @@ import { IconBook, IconDeviceTvOld, IconDownload, IconFlame } from "@tabler/icon
 import { FeatureIcon } from "../FeatureIcon";
 import { actions, blur, blurContainer, download, header, subtitle, title } from "./styles";
 import { Button } from "../Button";
-import { docsUrl, marketplaceUrl, repoUrl } from "@/lib/config";
+import { repoUrl } from "@/lib/config";
 import Link from "next/link";
 
 export function Download() {
