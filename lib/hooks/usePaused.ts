@@ -20,6 +20,8 @@ export default function usePause(videoRef: RefObject<HTMLVideoElement | null>, d
     }, [videoRef]);
 
     const toggle = useCallback(() => {
+        console.log('toggling');
+
         setPaused((state) => {
             const newState = !state;
             if (videoRef.current) {

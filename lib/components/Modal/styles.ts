@@ -14,24 +14,32 @@ export const modalBackground = cva({
         visibility: 'hidden',
         zIndex: 100,
         backgroundColor: '#000000cc',
-        transition: 'all 0.2s ease',
+        transition: 'all 0.2s ease-in-out',
     },
     variants: {
         opened: { true: { opacity: 1, visibility: 'visible' } }
     }
 });
 
-export const modalContainer = css({
-    padding: '30px 30px 10px 30px',
-    backgroundColor: 'tile.1',
-    zIndex: 101,
-    border: '1px solid',
-    borderRadius: '15px',
-    borderColor: 'border',
-    width: '1000px',
-    height: '500px',
-    display: 'flex',
-    flexDirection: 'column',
+export const modalContainer = cva({
+    base: {
+        padding: '30px 30px 10px 30px',
+        backgroundColor: 'tile.1',
+        zIndex: 101,
+        border: '1px solid',
+        borderRadius: '15px',
+        borderColor: 'border',
+        width: '1000px',
+        height: '500px',
+        display: 'flex',
+        flexDirection: 'column',
+        visibility: 'hidden',
+        opacity: 0,
+        transition: 'all 0.2s ease-in-out',
+    },
+    variants: {
+        opened: { true: { visibility: 'visible', opacity: 1 } }
+    }
 });
 
 export const modalHeader = css({

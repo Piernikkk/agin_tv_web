@@ -1,6 +1,6 @@
 'use client'
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import useApi from "@/lib/hooks/useApi";
 import { apiUrl } from "@/lib/config";
 import { TEpisode } from "@/lib/types/TEpisode";
@@ -13,6 +13,8 @@ import classes from './watch.module.css';
 import Loader from "@/lib/player/Loader";
 import Drawer from "@/lib/player/Drawer";
 import SourceTile from "@/lib/player/SourceTile";
+import { log } from "console";
+import axios from 'axios';
 
 export default function Watch() {
     const [loading, setLoading] = useState(true);
@@ -49,6 +51,12 @@ export default function Watch() {
         videoRef.current.src = `${apiUrl}/files/stream/${id}`;
     }
 
+    const getPosition = useMemo(async () => {
+        if (!api || !params.movieID || !params.episodeID) return;
+        const data = await api?.get(`/movies/${params.movieID}/episodes/${params.episodeID}/position`);
+        return data?.data
+    }, [api, params.movieID, params.episodeID]);
+
 
     useEffect(() => {
         (async () => {
@@ -71,14 +79,24 @@ export default function Watch() {
             setEpisode(episode.data);
 
             const sourceParam = searchParams.get('source');
+            const positionParam = searchParams.get('position');
 
-            if (sourceParam) {
+
+
+            if (sourceParam && positionParam) {
                 changeActiveLink(sourceParam);
+                videoRef.current.currentTime = parseInt(positionParam);
                 return;
+            } else {
+                const position = await getPosition;
+                changeActiveLink(position?.link);
+                videoRef.current.currentTime = position?.position;
+                if (!position) {
+                    changeActiveLink(episode?.data?.sources[0]?._id);
+                }
             }
 
             // videoRef.current.src = `${apiUrl}/files/stream/${episode?.data?.sources[0]?._id}`;
-            changeActiveLink(episode?.data?.sources[0]?._id);
 
         })();
     }, [api, videoRef.current]);
@@ -225,6 +243,8 @@ export default function Watch() {
         };
 
         const toggleScrubbing = (e: MouseEvent) => {
+            console.log('toggle scrubbing');
+
             const rect = timelineRef.current?.getBoundingClientRect();
             if (!rect) return;
 
@@ -247,6 +267,7 @@ export default function Watch() {
         };
 
         const handleMouseUp = (e: MouseEvent) => {
+            console.log('mouse up');
             if (isScrubbing) toggleScrubbing(e);
         };
 

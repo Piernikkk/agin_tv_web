@@ -7,6 +7,8 @@ import PageHeader, { HeaderOptions } from "@/lib/components/PageHeader";
 import { IconFolderFilled, IconLayoutGrid, IconUpload, IconWorld } from "@tabler/icons-react";
 import { UploadFileModalContext } from "../layout";
 import LibraryMovieTile from "@/lib/MovieTile/Library";
+import Text from "@/lib/components/Text";
+import { css } from "@/styled-system/css";
 
 
 export default function Library() {
@@ -44,9 +46,13 @@ export default function Library() {
             <PageHeader title="Library" icon={IconLayoutGrid} options={options} activeOption={activeOption} button={{ label: 'Upload', icon: IconUpload, onClick: uploadFile.open }} />
             {/* TODO:change this to pandaCSS */}
             <div className={libraryElementsContainer}>
-                {elements.length > 0 && elements?.map((element, index) => (
+                {activeOption == 'Your Files' ? elements.length > 0 && elements?.map((element, index) => (
                     <LibraryMovieTile key={index} {...element} />
-                ))}
+                )) :
+                    <div className={css({ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '20px', width: '100%', height: '100%' })}>
+                        <Text size="xl" weight={600}>No files shared with you</Text>
+                    </div>
+                }
             </div>
         </div>
     )

@@ -5,4 +5,5 @@ export const linksContainer = css({
     gap: '10px',
     flexDirection: 'column',
     justifyContent: 'center',
+    width: '100%',
 });

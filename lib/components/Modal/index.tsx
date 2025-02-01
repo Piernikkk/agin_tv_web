@@ -17,7 +17,7 @@ export default function ModalBase({ opened, onClose, children, icon: Icon, title
     return (
         <>
             <div className={modalBackground({ opened })} onClick={onClose}>
-                <div className={modalContainer} onClick={(e) => e.stopPropagation()}>
+                <div className={modalContainer({ opened })} onClick={(e) => e.stopPropagation()}>
                     <div className={modalHeader}>
                         <div className={modalTitle}>
                             {Icon && <Icon color="#fff" size={30} />}
