@@ -7,7 +7,7 @@ import Button from "@/lib/components/Button";
 
 type ContinueWatchingProps = {
     tiles?: TMovieTile[],
-    name: string
+    name: string,
 }
 
 
@@ -16,7 +16,7 @@ export default function Section({ name, tiles }: ContinueWatchingProps) {
         <div className={continueWatchingContainer}>
             <Text size="lg" weight={600}>{name}</Text>
             <div className={movieTilesList}>
-                {tiles?.map((tile, index) => <MovieTile key={index} {...tile} >
+                {tiles && tiles?.map((tile, index) => <MovieTile key={index} {...tile} >
                     <div className={movieTileTopInfo}>
                         <div className={movieTileDetailsButtons}>
                             <Button icon={IconPlayerPlayFilled} color="#000" contrast />
@@ -26,7 +26,7 @@ export default function Section({ name, tiles }: ContinueWatchingProps) {
                         {(tile.position && tile.duration) && <Text size="xxs" weight={500}>{Math.round(tile.position / 60)} of {Math.round(tile.duration / 60)} min</Text>}
                     </div>
                     <Text size="xd" weight={600}>{tile?.episode?.movie_name}</Text>
-                    <Text size="xxs" weight={300}>S{tile?.episode?.season?.toString().padStart(2, '0')}E{tile?.episode?.toString().padStart(2, '0')} • {name}</Text>
+                    <Text size="xxs" weight={300}>S{tile?.episode?.season?.toString().padStart(2, '0')}E{tile?.episode?.episode?.toString().padStart(2, '0')} • {tile?.episode?.name}</Text>
                 </MovieTile>)}
             </div>
         </div>

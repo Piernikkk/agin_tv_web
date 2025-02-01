@@ -150,7 +150,7 @@ export default function Watch() {
             api.patch(`/movies/${movieID}/episodes/${episodeID}/position`, {
                 position: Math.floor(videoRef.current.currentTime),
                 duration: Math.floor(videoRef.current.duration),
-                link: videoRef.current?.src,
+                link: currentSourceID,
             });
         } catch (error) {
             console.log('Position cannot be saved: ' + error);
