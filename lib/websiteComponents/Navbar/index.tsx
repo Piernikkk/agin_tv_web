@@ -3,7 +3,7 @@ import Logo from "../Logo";
 import NavbarLink from "./NavbarLink";
 import { container, linksContainer, menu, menuLogo } from "./styles";
 import Link from "next/link";
-import { docsUrl, marketplaceUrl, repoUrl } from "@/lib/config";
+import { repoUrl } from "@/lib/config";
 
 export function Navbar() {
     return (

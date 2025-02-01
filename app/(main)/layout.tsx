@@ -3,9 +3,8 @@ import { apiUrl } from "@/lib/config";
 import { TUser } from "@/lib/types/TUser";
 import axios from "axios";
 import { createContext, ReactNode, useLayoutEffect, useState } from "react";
-
-export const TokenContext = createContext<string | null>(null);
-export const UserContext = createContext<TUser | null>(null);
+import { TokenContext } from "../TokenContext";
+import { UserContext } from "../UserContext";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
     const [token, setToken] = useState<string | null>(null);
