@@ -6,11 +6,13 @@ import { apiUrl } from "@/lib/config";
 import { TEpisode } from "@/lib/types/TEpisode";
 import { AxiosResponse } from "axios";
 import PlayerButton from "@/lib/player/PlayerButton";
-import { IconArrowLeft, IconPlayerPauseFilled, IconPlayerPlayFilled } from "@tabler/icons-react";
+import { IconArrowLeft, IconFolderFilled, IconMaximize, IconMinimize, IconPlayerPauseFilled, IconPlayerPlayFilled } from "@tabler/icons-react";
 import VidoInfo from "@/lib/player/VideoInfo";
 import usePause from "@/lib/hooks/usePaused";
 import classes from './watch.module.css';
 import Loader from "@/lib/player/Loader";
+import Drawer from "@/lib/player/Drawer";
+import SourceTile from "@/lib/player/SourceTile";
 
 export default function Watch() {
     const [loading, setLoading] = useState(true);
@@ -31,8 +33,21 @@ export default function Watch() {
     const [paused, playback] = usePause(videoRef);
     const [time, setTime] = useState(0);
     const [fullscreen, setfullscreen] = useState(false);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [currentSourceID, setCurrentSourceID] = useState<string>();
 
     const videoSkipAmount = 5;
+
+    function changeActiveLink(id: string) {
+        console.log('Changing active link to: ' + `${apiUrl}/files/stream/${id}`);
+
+        if (!videoRef?.current) {
+            console.log('Video element not found');
+            return;
+        }
+        setCurrentSourceID(id);
+        videoRef.current.src = `${apiUrl}/files/stream/${id}`;
+    }
 
 
     useEffect(() => {
@@ -58,16 +73,17 @@ export default function Watch() {
             const sourceParam = searchParams.get('source');
 
             if (sourceParam) {
-                videoRef.current.src = `${apiUrl}/files/stream/${sourceParam}`;
+                changeActiveLink(sourceParam);
                 return;
             }
 
-            videoRef.current.src = `${apiUrl}/files/stream/${episode?.data?.sources[0]?._id}`;
+            // videoRef.current.src = `${apiUrl}/files/stream/${episode?.data?.sources[0]?._id}`;
+            changeActiveLink(episode?.data?.sources[0]?._id);
 
         })();
-    }, [api]);
+    }, [api, videoRef.current]);
 
-    function changePosition(p) {
+    function changePosition(p: number) {
         if (!videoRef.current) return;
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
@@ -267,12 +283,11 @@ export default function Watch() {
                     <div className={classes.timeline}>
                     </div>
                 </div>
-                {/* <PlayerButton icon={IconMessage} onClick={() => setDrawerOpen(!drawerOpen)} />
-                        <PlayerButton icon={IconSettings} />
-                        <PlayerButton icon={fullscreen ? IconMinimize : IconMaximize} onClick={toggleFullScreenMode} /> */}
+                <PlayerButton icon={IconFolderFilled} onClick={() => setDrawerOpen(!drawerOpen)} />
+                <PlayerButton icon={fullscreen ? IconMinimize : IconMaximize} onClick={toggleFullScreenMode} />
                 {/* <WatchBar progress={time / videoRef?.current?.duration} videoRef={videoRef} /> */}
             </div>
-            {/* <Drawer title={'Links'} opened={drawerOpen} setOpened={setDrawerOpen}><ScrollArea h={'100%'} w={'100%'} pb={'25px'} type="never">{links?.map((l, i) => <Links label={l.label} onClick={() => { setactiveLink(l?.url); setDrawerOpen(false) }} active={l?.url == activeLink} quality={l.quality} sub={l?.sub} audio={l?.audio} type={l?.type} />)}</ScrollArea></Drawer> */}
+            <Drawer title={'Sources'} opened={drawerOpen} setOpened={setDrawerOpen}><div>{episode?.sources?.map((l, i) => <SourceTile active={l?._id == currentSourceID} key={i} {...l} onClick={() => { changeActiveLink(l?._id); setDrawerOpen(false) }} />)}</div></Drawer>
         </div >
     )
 }
