@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/hooks": "^7.16.2",
     "@tabler/icons-react": "^3.28.1",
     "axios": "^1.7.9",
     "babel-plugin-react-compiler": "^19.0.0-beta-27714ef-20250124",
