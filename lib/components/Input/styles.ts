@@ -48,15 +48,15 @@ export const inputWrapper = cva({
             }
         }
     },
-    compoundVariants: [
-        {
-            Icon: true,
-            large: true,
-            css: {
-                paddingLeft: 20,
-            }
-        }
-    ]
+    // compoundVariants: [
+    //     {
+    //         Icon: true,
+    //         large: true,
+    //         css: {
+    //             paddingLeft: 20,
+    //         }
+    //     }
+    // ]
 });
 
 export const inputStyle = cva({
@@ -71,6 +71,7 @@ export const inputStyle = cva({
         fontFamily: 'Poppins',
         width: '100%',
         height: '50px',
+        // height: '60px',
         flex: 1,
         '&:active': {
             outline: 'none',
@@ -81,6 +82,7 @@ export const inputStyle = cva({
             true: {
                 fontSize: 20,
                 padding: '16px 20px',
+                height: '60px',
             }
         },
         Icon: {
@@ -89,13 +91,13 @@ export const inputStyle = cva({
             }
         },
     },
-    compoundVariants: [
-        {
-            Icon: true,
-            large: true,
-            css: {
-                paddingLeft: '10px',
-            }
-        }
-    ]
+    // compoundVariants: [
+    //     {
+    //         Icon: true,
+    //         large: true,
+    //         css: {
+    //             paddingLeft: '10px',
+    //         }
+    //     }
+    // ]
 })

@@ -1,5 +1,5 @@
 'use client'
-import { IconHistory, IconHome, IconLayoutGrid, IconLogout } from "@tabler/icons-react";
+import { IconHistory, IconHome, IconLayoutGrid, IconLogout, IconSearch } from "@tabler/icons-react";
 import TabBarHeader from "./Header";
 import { tabBarContainer, windowContainer } from "./styles";
 import TabOption from "./TabOption";
@@ -17,6 +17,11 @@ const options = [
         href: '/app',
         label: 'Home',
         icon: IconHome,
+    },
+    {
+        href: '/app/search',
+        label: 'Search',
+        icon: IconSearch,
     },
     {
         href: '/app/library',
