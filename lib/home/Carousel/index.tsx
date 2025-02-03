@@ -8,6 +8,7 @@ export type TSlide = {
     logo_url?: string,
     name?: string,
     description?: string
+    tmdb_id: string,
 }
 
 export interface CarouselProps extends React.HtmlHTMLAttributes<HTMLDivElement> {

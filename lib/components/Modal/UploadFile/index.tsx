@@ -23,7 +23,7 @@ export default function UploadFileModal({ ...props }: UploadFileModalProps) {
     const abortControllerRef = useRef<AbortController | null>(null);
 
     const handleUpload = async () => {
-        if (!api || !file || !movieID || !episode) {
+        if (!api || !file || !movieID || (!episode && !movieID.startsWith('m'))) {
             console.log("No api, file or movieID");
             return;
         }
@@ -31,9 +31,15 @@ export default function UploadFileModal({ ...props }: UploadFileModalProps) {
         setUploading(true);
         abortControllerRef.current = new AbortController();
 
-        const tmp = episode.split(',');
-        const seasonNumber = tmp[0];
-        const episodeNumber = tmp[1];
+
+        let seasonNumber = '0';
+        let episodeNumber = '0';
+
+        if (!movieID.startsWith('m') && episode) {
+            const tmp = episode.split(',');
+            seasonNumber = tmp[0];
+            episodeNumber = tmp[1];
+        }
 
         console.log("movieData: ", movieID, episodeNumber, seasonNumber);
 
@@ -84,8 +90,8 @@ export default function UploadFileModal({ ...props }: UploadFileModalProps) {
         <ModalBase title="Upload File" icon={IconUpload} {...props}>
             <div className={UploadFileContainer}>
                 <div className={UploadFileInputs}>
-                    <Input onChange={(e) => setMovieID(e?.currentTarget?.value)} width={'100%'} label="Movie ID" />
-                    <Input onChange={(e) => setEpisode(e?.currentTarget?.value)} width={'100%'} label="Episode" />
+                    <Input onChange={(e) => setMovieID(e?.currentTarget?.value)} width={'100%'} label="Movie ID" placeholder="e.g. t123" />
+                    {!movieID?.startsWith('m') && <Input onChange={(e) => setEpisode(e?.currentTarget?.value)} width={'100%'} label="Episode" placeholder="e.g. 1,1" />}
                 </div>
                 <Dropzone onDrop={handleDrop} />
                 {uploading && <ProgressBar progress={progress} />}

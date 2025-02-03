@@ -5,10 +5,13 @@ import { IconPlayerPlayFilled, IconPlus } from "@tabler/icons-react";
 import Button from "@/lib/components/Button";
 import Text from "@/lib/components/Text";
 import { useRouter } from "next/navigation";
+import { MouseEventHandler } from "react";
 
-export default function LibraryMovieTile({ name, horizontal_cover_url, tmdb_id, genres }: TMovie) {
+interface LibraryMovieTileProps extends TMovie {
+    onPlusClick?: MouseEventHandler<HTMLDivElement>,
+}
+export default function LibraryMovieTile({ name, horizontal_cover_url, tmdb_id, genres, onPlusClick }: LibraryMovieTileProps) {
     const router = useRouter();
-
     return (
         <MovieTile
             onClick={() => router.push(`/app/movies/${tmdb_id}`)}
@@ -17,7 +20,7 @@ export default function LibraryMovieTile({ name, horizontal_cover_url, tmdb_id, 
             <div className={movieTileTopInfo}>
                 <div className={movieTileDetailsButtons}>
                     <Button icon={IconPlayerPlayFilled} color="#000" contrast />
-                    <Button icon={IconPlus} color="#fff" />
+                    {onPlusClick && <Button icon={IconPlus} color="#fff" onClick={onPlusClick} />}
                 </div>
             </div>
             <Text lineClamp={1} size="xd" weight={600}>{name}</Text>

@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useState } from "react"
+import { RefObject, useCallback, useEffect, useState } from "react"
 
 export type usePausedType = [boolean, { play: () => void; pause: () => void; toggle: () => void }]
 
@@ -19,9 +19,25 @@ export default function usePause(videoRef: RefObject<HTMLVideoElement | null>, d
         }
     }, [videoRef]);
 
-    const toggle = useCallback(() => {
-        console.log('toggling');
+    useEffect(() => {
+        if (!videoRef.current) {
+            return
+        }
 
+
+
+        const changeToPlay = () => { setPaused(false); console.log('play'); }
+        const changeToPause = () => { setPaused(true); console.log('pause'); }
+        videoRef?.current?.addEventListener("play", changeToPlay)
+        videoRef?.current?.addEventListener("pause", changeToPause)
+
+        return () => {
+            videoRef?.current?.removeEventListener("play", changeToPlay)
+            videoRef?.current?.removeEventListener("pause", changeToPause)
+        }
+    }, [videoRef?.current]);
+
+    const toggle = useCallback(() => {
         setPaused((state) => {
             const newState = !state;
             if (videoRef.current) {

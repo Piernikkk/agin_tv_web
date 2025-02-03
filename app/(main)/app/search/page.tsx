@@ -8,6 +8,7 @@ import { IconSearch } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 import { libraryElementsContainer } from "../library/styles";
 import LibraryMovieTile from "@/lib/MovieTile/Library";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
     const api = useApi();
@@ -15,6 +16,7 @@ export default function Page() {
     const abortController = useRef<AbortController>(null);
     const [data, setData] = useState<TMovie[]>([]);
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     function getAsyncData(searchQuery: string, signal: AbortSignal): Promise<TMovie[]> {
         return new Promise(async (resolve, reject) => {
@@ -55,7 +57,11 @@ export default function Page() {
             </div> : !loading ? data.length > 0 ?
                 <div className={libraryElementsContainer}>
                     {data?.map((d, i) => (
-                        <LibraryMovieTile key={d.tmdb_id + i} {...d} />
+                        <LibraryMovieTile key={d.tmdb_id + i} {...d} onPlusClick={(e) => {
+                            e.stopPropagation();
+                            api?.patch('/collections/system/library', { movie_id: d.tmdb_id });
+                            router.push('/app/library');
+                        }} />
                     ))}
                 </div> : <div className={noInputContainer}>
                     <Text size="xl">No results found</Text>

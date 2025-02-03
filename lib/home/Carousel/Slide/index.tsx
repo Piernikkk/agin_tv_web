@@ -3,6 +3,7 @@ import Text from "@/lib/components/Text";
 import { TSlide } from "..";
 import { logoImage, SlideBackgroundFiller, SlideContainer, SlideDescription, SlideElementsContainer, SlideImage } from "./styles";
 import CarouselControls from "../Controls";
+import { useRouter } from "next/navigation";
 
 export type SlideProps = {
     slides: TSlide[] | undefined,
@@ -11,6 +12,8 @@ export type SlideProps = {
 }
 
 export default function Slide({ slides, activeSlide, setSlide }: SlideProps) {
+    const router = useRouter();
+
     const [prevSlide, setPrevSlide] = useState(activeSlide);
     const [animate, setAnimate] = useState(false);
 
@@ -50,7 +53,8 @@ export default function Slide({ slides, activeSlide, setSlide }: SlideProps) {
         }
     }
 
-    function slideChange(right?: boolean) {
+    function slideChange(right?: boolean, e?: React.MouseEvent) {
+        e?.stopPropagation();
         if (slides == undefined) return;
 
         if (right == true) {
@@ -69,7 +73,7 @@ export default function Slide({ slides, activeSlide, setSlide }: SlideProps) {
     }
 
     return (
-        <div className={SlideContainer}>
+        <div className={SlideContainer} onClick={() => router.push(`/app/movies/${slides?.[activeSlide]?.tmdb_id}`)}>
             <img src={slides?.[activeSlide]?.background_url} alt={slides?.[activeSlide]?.name} className={SlideImage({ animate })} />
             <div className={SlideBackgroundFiller} />
             <div className={SlideElementsContainer}>
@@ -78,7 +82,7 @@ export default function Slide({ slides, activeSlide, setSlide }: SlideProps) {
                     {slides?.[activeSlide]?.logo_url && <img src={slides?.[activeSlide]?.logo_url} className={logoImage} />}
                     <Text lineClamp={5} size="md">{slides?.[activeSlide]?.description || 'Loading...'}</Text>
                 </div>
-                {(slides && slides?.length > 1) && <CarouselControls slides={slides} activeSlide={activeSlide} setActiveSlide={setSlide} onLeftClick={() => slideChange(false)} onRightClick={() => slideChange(true)} />}
+                {(slides && slides?.length > 1) && <CarouselControls slides={slides} activeSlide={activeSlide} setActiveSlide={setSlide} onLeftClick={(e) => slideChange(false, e)} onRightClick={(e) => slideChange(true, e)} />}
             </div>
         </div>
     )

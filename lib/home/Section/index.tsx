@@ -23,7 +23,7 @@ export default function Section({ name, tiles }: ContinueWatchingProps) {
                     <div className={movieTileTopInfo}>
                         <div className={movieTileDetailsButtons}>
                             <Button icon={IconPlayerPlayFilled} color="#000" contrast />
-                            <Button icon={IconPlus} color="#fff" />
+                            {/* <Button icon={IconPlus} color="#fff" /> */}
                             <Button icon={IconInfoCircle} onClick={(e) => { e.stopPropagation(); router.push(`/app/movies/${tile?.episode?.tmdb_movie_id}/episodes/${tile?.episode?.season},${tile?.episode?.episode}`) }} color="#fff" />
                         </div>
                         {(tile.position && tile.duration) && <Text size="xxs" weight={500}>{Math.round(tile.position / 60)} of {Math.round(tile.duration / 60)} min</Text>}

@@ -1,12 +1,12 @@
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { CarouselControlsArrows, CarouselControlsContainer } from "./styles";
 import { TSlide } from "..";
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { css } from "@/styled-system/css";
 
 export type CarouselControlsProps = {
-    onLeftClick?: () => void,
-    onRightClick?: () => void,
+    onLeftClick?: MouseEventHandler<HTMLDivElement>,
+    onRightClick?: MouseEventHandler<HTMLDivElement>,
     slides: TSlide[],
     activeSlide: number,
     setActiveSlide: React.Dispatch<React.SetStateAction<number>>,

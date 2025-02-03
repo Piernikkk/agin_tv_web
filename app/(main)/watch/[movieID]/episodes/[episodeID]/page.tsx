@@ -32,7 +32,7 @@ export default function Watch() {
     const [isTV, setIsTV] = useState(false);
 
     const [showControls, setShowControls] = useState(true);
-    const [paused, playback] = usePause(videoRef);
+    const [paused, playback] = usePause(videoRef, false);
     const [time, setTime] = useState(0);
     const [fullscreen, setfullscreen] = useState(false);
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -83,17 +83,20 @@ export default function Watch() {
 
 
 
-            if (sourceParam && positionParam) {
+            if (sourceParam) {
                 changeActiveLink(sourceParam);
-                videoRef.current.currentTime = parseInt(positionParam);
+                if (positionParam) {
+                    videoRef.current.currentTime = parseInt(positionParam);
+                }
                 return;
             } else {
                 const position = await getPosition;
-                changeActiveLink(position?.link);
-                videoRef.current.currentTime = position?.position;
                 if (!position) {
                     changeActiveLink(episode?.data?.sources[0]?._id);
+                    return;
                 }
+                changeActiveLink(position?.link);
+                videoRef.current.currentTime = position?.position;
             }
 
             // videoRef.current.src = `${apiUrl}/files/stream/${episode?.data?.sources[0]?._id}`;
@@ -200,10 +203,29 @@ export default function Watch() {
 
         return () => {
             videoRef?.current?.removeEventListener("waiting", Loading)
-            videoRef?.current?.addEventListener("canplay", notLoading)
+            videoRef?.current?.removeEventListener("canplay", notLoading)
 
         }
-    }, [])
+    }, [videoRef?.current]);
+
+
+    useEffect(() => {
+        // List of all possible video events
+        const videoEvents = [
+            "play", "pause", "ended", "volumechange", "timeupdate",
+            "loadedmetadata", "loadeddata", "progress", "canplay", "canplaythrough",
+            "seeking", "seeked", "waiting", "stalled", "suspend",
+            "ratechange", "durationchange", "abort", "error"
+        ];
+
+        // Attach event listeners
+        videoEvents.forEach(event => {
+            videoRef?.current?.addEventListener(event, (e) => {
+                console.log(`Video event triggered: ${e.type}`);
+            });
+        });
+
+    }, [videoRef?.current])
 
     useEffect(() => {
         const onTimeUpdate = () => {
@@ -252,7 +274,7 @@ export default function Watch() {
             isScrubbing = (e.buttons & 1) === 1;
 
             containerRef.current?.classList.toggle("scrubbing", isScrubbing);
-            if (isScrubbing) {
+            if (isScrubbing == true) {
                 wasPaused = videoRef.current?.paused ?? false;
                 videoRef.current?.pause();
             } else {

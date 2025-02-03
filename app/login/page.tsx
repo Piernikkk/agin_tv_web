@@ -47,6 +47,9 @@ export default function LoginPage() {
         <div className={loginPageContainer}>
             <div className={blurDiv} />
             <TabBarHeader expanded={true} size={60} />
+            <div className={css({ zIndex: 3 })}>
+                <Text>To try, log in with email &quot;demo@demo.demo&quot; and passord &quot;demo&quot;</Text>
+            </div>
             <div className={loginFormContainer}>
                 <Text weight={600} size="xl">Log in</Text>
                 <Input onChange={(e) => setEmail(e.currentTarget.value)} label="Email" width={'100%'} />
