@@ -1,12 +1,13 @@
-import { RefObject, useCallback, useEffect, useState } from "react"
+import { Dispatch, RefObject, SetStateAction, useCallback, useEffect, useState } from "react"
 
 export type usePausedType = [boolean, { play: () => void; pause: () => void; toggle: () => void }]
 
-export default function usePause(videoRef: RefObject<HTMLVideoElement | null>, defaultState?: boolean): usePausedType {
+export default function usePause(videoRef: RefObject<HTMLVideoElement | null>, setShowControls: Dispatch<SetStateAction<boolean>>, defaultState?: boolean,): usePausedType {
     const [paused, setPaused] = useState(defaultState || false);
 
     const pause = useCallback(() => {
         setPaused(true);
+        setShowControls(true);
         if (videoRef.current) {
             videoRef.current.pause();
         }
@@ -14,6 +15,7 @@ export default function usePause(videoRef: RefObject<HTMLVideoElement | null>, d
 
     const play = useCallback(() => {
         setPaused(false);
+        setShowControls(false);
         if (videoRef.current) {
             videoRef.current.play();
         }

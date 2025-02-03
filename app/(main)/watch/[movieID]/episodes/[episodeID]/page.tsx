@@ -32,7 +32,7 @@ export default function Watch() {
     const [isTV, setIsTV] = useState(false);
 
     const [showControls, setShowControls] = useState(true);
-    const [paused, playback] = usePause(videoRef, false);
+    const [paused, playback] = usePause(videoRef, setShowControls, false);
     const [time, setTime] = useState(0);
     const [fullscreen, setfullscreen] = useState(false);
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -103,6 +103,26 @@ export default function Watch() {
 
         })();
     }, [api, videoRef.current]);
+
+    useEffect(() => {
+        function showControls() {
+            if (timeoutRef?.current) {
+                clearTimeout(timeoutRef.current);
+            }
+
+            setShowControls(true);
+
+            if (!paused)
+                timeoutRef.current = setTimeout(() => setShowControls(false), 3000);
+        }
+
+        document.addEventListener("mousemove", showControls);
+
+        return () => {
+            document.removeEventListener("mousemove", showControls);
+        }
+
+    }, [paused]);
 
     function changePosition(p: number) {
         if (!videoRef.current) return;

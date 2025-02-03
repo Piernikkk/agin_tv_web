@@ -42,7 +42,6 @@ export default function UploadFileModal({ ...props }: UploadFileModalProps) {
         }
 
         console.log("movieData: ", movieID, episodeNumber, seasonNumber);
-
         const formData = new FormData();
         formData.append('movie_id', movieID);
         formData.append('season', seasonNumber);
@@ -71,6 +70,8 @@ export default function UploadFileModal({ ...props }: UploadFileModalProps) {
             }
         } finally {
             setUploading(false);
+            props.onClose();
+            window.location.reload();
         }
     }
 
